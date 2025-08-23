@@ -1,19 +1,16 @@
 ---
-import Features from '../components/Features.astro';
-import HeroSection from '../components/HeroSection.astro';
 import Layout from '../layouts/Layout.astro';
-import Award from '../components/Award.astro';
-import Contact from '../components/Contact.astro';
-import FeaturedProduct from '../components/FeaturedProduct.astro';
-
+import Introduction from '../components/agriconnect/Introduction.astro';
+import Chatbot from '../components/agriconnect/Chatbot.astro';
+import AnalyticsDashboard from '../components/agriconnect/AnalyticsDashboard.astro';
+import ContentManagement from '../components/agriconnect/ContentManagement.astro';
 ---
 
-<Layout title="Intaigent" isMainPage={true}>
-	<main class="space-y-40 mb-40">
-		<HeroSection/>
-		<Features/>
-		<FeaturedProduct/>
-		<Award/>
-		<Contact/>
-	</main>
+<Layout title="AgriConnect - intaigent" isMainPage={true}>
+  <main>
+    <Introduction />
+    <Chatbot />
+    <AnalyticsDashboard />
+    <ContentManagement />
+  </main>
 </Layout>

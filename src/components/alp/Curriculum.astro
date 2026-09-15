@@ -4,7 +4,6 @@ const paths = site.learningPaths;
 const per = Math.ceil(paths.length / 2);
 const columns = [paths.slice(0, per), paths.slice(per)];
 const categoryCount = paths.reduce((n, p) => n + p.categories.length, 0);
-const courseCount = paths.reduce((n, p) => n + p.categories.reduce((m, c) => m + c.courses, 0), 0);
 ---
 
 <section id="curriculum" class="reveal bg-alp-navy py-20 text-white lg:py-24">
@@ -31,8 +30,8 @@ const courseCount = paths.reduce((n, p) => n + p.categories.reduce((m, c) => m +
             <dd class="mt-1 text-2xl font-extrabold tabular-nums text-alp-bright">{categoryCount}</dd>
           </div>
           <div>
-            <dt class="text-xs text-white/60">Courses</dt>
-            <dd class="mt-1 text-2xl font-extrabold tabular-nums text-alp-bright">{courseCount}</dd>
+            <dt class="text-xs text-white/60">Formats</dt>
+            <dd class="mt-1 text-sm font-semibold leading-snug">Text, audio, images, video</dd>
           </div>
         </dl>
       </div>
@@ -44,7 +43,6 @@ const courseCount = paths.reduce((n, p) => n + p.categories.reduce((m, c) => m +
               {col.map((lp, i) => {
                 const n = c * per + i + 1;
                 const id = `lp-${n}`;
-                const courses = lp.categories.reduce((m, x) => m + x.courses, 0);
                 return (
                   <li>
                     <button
@@ -67,13 +65,9 @@ const courseCount = paths.reduce((n, p) => n + p.categories.reduce((m, c) => m +
                     <div id={id} class="lp-panel" hidden>
                       <ul class="mb-5 ml-14 space-y-2 border-l border-alp-bright/40 pl-5">
                         {lp.categories.map((cat) => (
-                          <li class="flex items-baseline justify-between gap-4 text-sm">
-                            <span class="text-white/85">{cat.name}</span>
-                            <span class="shrink-0 tabular-nums text-white/45">{cat.courses} courses</span>
-                          </li>
+                          <li class="text-sm text-white/85">{cat.name}</li>
                         ))}
                       </ul>
-                      <p class="mb-5 ml-14 pl-5 text-xs text-white/45">{courses} courses in this path</p>
                     </div>
                   </li>
                 );

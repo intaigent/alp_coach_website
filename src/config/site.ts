@@ -43,27 +43,27 @@ export const site = {
     { name: "Amharic", status: "planned" },
   ] as const,
 
-  // Structure of the full ALP curriculum (learning path > category > courses),
+  // Structure of the full ALP curriculum (learning path > category),
   // from the MCT Learning Paths library, including the Traceability category.
   learningPaths: [
     { title: "Fundamentals of Cooperatives", categories: [
-      { name: "Understanding Cooperatives", courses: 3 }, { name: "Leadership", courses: 3 }, { name: "Member Relations", courses: 4 } ] },
+      { name: "Understanding Cooperatives" }, { name: "Leadership" }, { name: "Member Relations" } ] },
     { title: "Producer Organization Essentials", categories: [
-      { name: "Operations", courses: 4 }, { name: "Bookkeeping for Producer Organizations", courses: 6 }, { name: "Sustainability", courses: 6 } ] },
+      { name: "Operations" }, { name: "Bookkeeping for Producer Organizations" }, { name: "Sustainability" } ] },
     { title: "Fundamentals of Retail Management", categories: [
-      { name: "Business Relationships", courses: 4 }, { name: "Inventory Management", courses: 4 }, { name: "Cost Management", courses: 3 } ] },
+      { name: "Business Relationships" }, { name: "Inventory Management" }, { name: "Cost Management" } ] },
     { title: "Bookkeeping Essentials", categories: [
-      { name: "Bookkeeping and Your Business", courses: 3 }, { name: "Bookkeeping Ledgers", courses: 3 } ] },
+      { name: "Bookkeeping and Your Business" }, { name: "Bookkeeping Ledgers" } ] },
     { title: "Finance and Accounting", categories: [
-      { name: "Finance and Accounting Basics", courses: 6 }, { name: "Working with Credit", courses: 3 }, { name: "Financial Analysis and Planning", courses: 5 } ] },
+      { name: "Finance and Accounting Basics" }, { name: "Working with Credit" }, { name: "Financial Analysis and Planning" } ] },
     { title: "Growing Your Business", categories: [
-      { name: "Planning for Your Business", courses: 5 }, { name: "Marketing", courses: 4 }, { name: "Managing Risk", courses: 3 } ] },
+      { name: "Planning for Your Business" }, { name: "Marketing" }, { name: "Managing Risk" } ] },
     { title: "Internal Management", categories: [
-      { name: "Internal Organization", courses: 3 }, { name: "Staff Management", courses: 3 } ] },
+      { name: "Internal Organization" }, { name: "Staff Management" } ] },
     { title: "Business Sustainability", categories: [
-      { name: "Sustainability", courses: 6 }, { name: "Traceability", courses: 3 }, { name: "Women's Inclusion", courses: 3 } ] },
+      { name: "Sustainability" }, { name: "Traceability" }, { name: "Women's Inclusion" } ] },
     { title: "Fundamentals of ALP Coaching", categories: [
-      { name: "Coaching Basics", courses: 2 }, { name: "Coaching Skills", courses: 3 }, { name: "Coaching for the ALP Context", courses: 3 } ] },
+      { name: "Coaching Basics" }, { name: "Coaching Skills" }, { name: "Coaching for the ALP Context" } ] },
   ],
 
   deployments: [

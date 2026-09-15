@@ -1,6 +1,7 @@
 ---
 import { site } from "../../config/site";
 import PhoneMock from "./PhoneMock.astro";
+import Wave from "./Wave.astro";
 const { telegram, whatsapp } = site;
 ---
 
@@ -63,7 +64,26 @@ const { telegram, whatsapp } = site;
       <div class="relative">
         <div aria-hidden="true" class="absolute inset-x-8 -inset-y-6 rounded-[60px] bg-gradient-to-b from-alp-bright/25 via-alp-sky/10 to-transparent blur-2xl"></div>
         <div class="relative">
-          <PhoneMock />
+          <PhoneMock>
+            <p class="pm-day">Today</p>
+            <div class="pm-bubble pm-user" style="--i: 1">What is the ABC method?</div>
+            <div class="pm-bubble pm-coach" style="--i: 2">
+              The ABC method is an inventory management technique that classifies products into three
+              categories based on their value to the business. Category A products generate the most
+              revenue and need close management, B are important but less critical, and C are low-value
+              items that contribute little to income.
+            </div>
+            <div class="pm-bubble pm-coach pm-card" style="--i: 3">
+              <p class="pm-kicker">Continue learning</p>
+              <p class="pm-title">Inventory management methods</p>
+              <p class="pm-meta">Fundamentals of Retail Management</p>
+            </div>
+            <div class="pm-bubble pm-user pm-voice" style="--i: 4" aria-label="Voice message, 6 seconds">
+              <span class="pm-play" aria-hidden="true"></span>
+              <Wave />
+              <span class="pm-time">0:06</span>
+            </div>
+          </PhoneMock>
         </div>
       </div>
     </div>

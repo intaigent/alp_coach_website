@@ -1,262 +1,291 @@
 ---
-// A designed phone mock of a real ALP Coach exchange (answer text is the bot's
-// actual reply to "What is the ABC method?", shortened). No video, no screenshots,
-// so it stays crisp at every size and matches the brand.
+// Designed phone frame with an ALP Coach chat header and input bar.
+// Put message bubbles in the default slot (see Hero and HowItWorks for markup).
+// Styles are global so slotted bubbles pick them up; classes are prefixed "pm-".
+interface Props {
+  compact?: boolean;
+  label?: string;
+}
+const { compact = false, label = "ALP Coach chat preview" } = Astro.props;
 ---
 
-<div class="phone" aria-label="ALP Coach chat preview">
-  <div class="phone__screen">
-    <div class="phone__notch" aria-hidden="true"></div>
+<div class:list={["pm-phone", { "pm-phone--compact": compact }]} aria-label={label}>
+  <div class="pm-screen">
+    <div class="pm-notch" aria-hidden="true"></div>
 
-    <header class="chat__header">
-      <div class="chat__avatar" aria-hidden="true">
+    <header class="pm-header">
+      <div class="pm-avatar" aria-hidden="true">
         <img src="/images/alp/brand/alp-mark.png" alt="" width="40" height="40" />
       </div>
       <div>
-        <p class="chat__name">ALP Coach</p>
-        <p class="chat__status">online</p>
+        <p class="pm-name">ALP Coach</p>
+        <p class="pm-status">online</p>
       </div>
     </header>
 
-    <div class="chat__body">
-      <p class="chat__day">Today</p>
-
-      <div class="bubble bubble--user" style="--i: 1">What is the ABC method?</div>
-
-      <div class="bubble bubble--coach" style="--i: 2">
-        The ABC method is an inventory management technique that classifies products into three
-        categories based on their value to the business. Category A products generate the most
-        revenue and need close management, B are important but less critical, and C are low-value
-        items that contribute little to income.
-      </div>
-
-      <div class="bubble bubble--coach bubble--card" style="--i: 3">
-        <p class="card__kicker">Continue learning</p>
-        <p class="card__title">Inventory management methods</p>
-        <p class="card__meta">Fundamentals of Retail Management</p>
-      </div>
-
-      <div class="bubble bubble--user bubble--voice" style="--i: 4" aria-label="Voice message, 6 seconds">
-        <span class="voice__play" aria-hidden="true"></span>
-        <span class="voice__wave" aria-hidden="true">
-          {Array.from({ length: 22 }).map((_, i) => <i style={`--h: ${[3, 6, 9, 5, 12, 8, 4, 10, 7, 13, 6, 9, 4, 11, 8, 5, 12, 7, 3, 9, 6, 4][i]}px`}></i>)}
-        </span>
-        <span class="voice__time">0:06</span>
-      </div>
-
+    <div class="pm-body">
+      <slot />
     </div>
 
-    <footer class="chat__input" aria-hidden="true">
-      <span class="chat__field">Ask the coach…</span>
-      <span class="chat__mic"></span>
+    <footer class="pm-input" aria-hidden="true">
+      <span class="pm-field">Ask the coach…</span>
+      <span class="pm-mic"></span>
     </footer>
   </div>
 </div>
 
-<style>
-  .phone {
+<style is:global>
+  .pm-phone {
+    --pm-fs: 12.5px;
+    --pm-radius: 44px;
+    --pm-pad: 10px;
+    --pm-top: 50px;
     width: 100%;
     max-width: 300px;
     margin-inline: auto;
-    padding: 10px;
-    border-radius: 44px;
+    padding: var(--pm-pad);
+    border-radius: var(--pm-radius);
     background: #0b1b2e;
     box-shadow:
       0 30px 60px -20px rgba(0, 35, 69, 0.45),
       0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+    font-family: Urbanist, ui-sans-serif, system-ui, sans-serif;
+    color: #002345;
   }
-  .phone__screen {
+  .pm-phone--compact {
+    --pm-fs: 11px;
+    --pm-radius: 34px;
+    --pm-pad: 7px;
+    --pm-top: 38px;
+    max-width: 230px;
+    box-shadow: 0 18px 40px -18px rgba(0, 35, 69, 0.4);
+  }
+  .pm-screen {
     position: relative;
     display: flex;
     flex-direction: column;
     aspect-ratio: 9 / 18.6;
     overflow: hidden;
-    border-radius: 36px;
+    border-radius: calc(var(--pm-radius) - var(--pm-pad) + 2px);
     background: #f4f8f5;
-    font-family: Urbanist, ui-sans-serif, system-ui, sans-serif;
   }
-  .phone__notch {
+  .pm-notch {
     position: absolute;
-    top: 10px;
+    top: 9px;
     left: 50%;
-    width: 84px;
-    height: 24px;
+    width: 30%;
+    height: calc(var(--pm-top) * 0.42);
     transform: translateX(-50%);
     border-radius: 999px;
     background: #0b1b2e;
     z-index: 2;
   }
-  .chat__header {
+  .pm-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 50px 16px 12px;
+    gap: 9px;
+    padding: var(--pm-top) 14px 10px;
     background: #fff;
     border-bottom: 1px solid #d6e4da;
   }
-  .chat__avatar {
+  .pm-avatar {
     display: grid;
     place-items: center;
-    width: 36px;
-    height: 36px;
+    width: calc(var(--pm-fs) * 2.7);
+    height: calc(var(--pm-fs) * 2.7);
     border-radius: 999px;
     background: #f4f8f5;
     border: 1px solid #d6e4da;
     overflow: hidden;
   }
-  .chat__avatar img {
-    width: 24px;
-    height: 24px;
+  .pm-avatar img {
+    width: 65%;
+    height: 65%;
     object-fit: contain;
   }
-  .chat__name {
+  .pm-name {
     margin: 0;
-    font-size: 14px;
+    font-size: calc(var(--pm-fs) * 1.1);
     font-weight: 700;
-    color: #002345;
     line-height: 1.1;
   }
-  .chat__status {
+  .pm-status {
     margin: 2px 0 0;
-    font-size: 11px;
+    font-size: calc(var(--pm-fs) * 0.85);
     color: #008540;
     line-height: 1;
   }
-  .chat__body {
+  .pm-body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    padding: 14px 12px 8px;
+    gap: 7px;
+    padding: 12px 10px 8px;
     overflow: hidden;
   }
-  .chat__day {
-    margin: 0 0 4px;
+  .pm-day {
+    margin: 0 0 3px;
     text-align: center;
-    font-size: 10px;
+    font-size: calc(var(--pm-fs) * 0.78);
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #587083;
   }
-  .bubble {
-    max-width: 86%;
-    padding: 9px 12px;
-    border-radius: 16px;
-    font-size: 12.5px;
+  .pm-bubble {
+    max-width: 88%;
+    padding: 8px 11px;
+    border-radius: 15px;
+    font-size: var(--pm-fs);
     line-height: 1.4;
-    color: #002345;
     background: #fff;
     box-shadow: 0 1px 2px rgba(0, 35, 69, 0.08);
     opacity: 0;
     transform: translateY(8px);
-    animation: bubble-in 0.5s ease-out forwards;
-    animation-delay: calc(var(--i) * 0.35s + 0.2s);
+    animation: pm-bubble-in 0.5s ease-out forwards;
+    animation-delay: calc(var(--i, 1) * 0.35s + 0.2s);
   }
-  .bubble--coach {
+  .pm-bubble p {
+    margin: 0;
+  }
+  .pm-bubble p + p {
+    margin-top: 5px;
+  }
+  .pm-coach {
     align-self: flex-start;
     border-bottom-left-radius: 4px;
   }
-  .bubble--user {
+  .pm-user {
     align-self: flex-end;
     background: #008540;
     color: #fff;
     border-bottom-right-radius: 4px;
     font-weight: 500;
   }
-  .bubble--card {
+  .pm-card {
     border-left: 3px solid #00bb33;
   }
-  .card__kicker {
-    margin: 0;
-    font-size: 9.5px;
+  .pm-kicker {
+    font-size: calc(var(--pm-fs) * 0.76);
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #008540;
   }
-  .card__title {
-    margin: 3px 0 0;
-    font-size: 12.5px;
+  .pm-title {
     font-weight: 700;
   }
-  .card__meta {
-    margin: 2px 0 0;
-    font-size: 10.5px;
+  .pm-meta {
+    font-size: calc(var(--pm-fs) * 0.84);
     color: #587083;
   }
-  .bubble--voice {
+  .pm-option {
+    display: block;
+    margin-top: 5px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    border: 1px solid #d6e4da;
+    font-size: calc(var(--pm-fs) * 0.92);
+  }
+  .pm-option--correct {
+    border-color: #00bb33;
+    background: rgba(0, 187, 51, 0.08);
+    font-weight: 600;
+  }
+  .pm-progress {
+    display: block;
+    margin-top: 6px;
+    height: 4px;
+    border-radius: 999px;
+    background: #e3ece6;
+    overflow: hidden;
+  }
+  .pm-progress i {
+    display: block;
+    height: 100%;
+    width: var(--w, 40%);
+    background: #00bb33;
+  }
+  .pm-voice {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
+    gap: 7px;
+    padding: 7px 11px;
   }
-  .voice__play {
+  .pm-play {
     width: 0;
     height: 0;
-    border-left: 8px solid #fff;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
+    border-left: 7px solid currentColor;
+    border-top: 4.5px solid transparent;
+    border-bottom: 4.5px solid transparent;
   }
-  .voice__wave {
+  .pm-coach .pm-play {
+    color: #008540;
+  }
+  .pm-wave {
     display: flex;
     align-items: center;
     gap: 2px;
-    height: 16px;
+    height: 14px;
   }
-  .voice__wave i {
+  .pm-wave i {
     display: block;
     width: 2px;
     height: var(--h);
     border-radius: 2px;
-    background: rgba(255, 255, 255, 0.85);
-  }
-  .voice__time {
-    font-size: 10.5px;
+    background: currentColor;
     opacity: 0.85;
   }
-  .chat__input {
+  .pm-coach .pm-wave i {
+    background: #002345;
+    opacity: 0.55;
+  }
+  .pm-time {
+    font-size: calc(var(--pm-fs) * 0.84);
+    opacity: 0.85;
+  }
+  .pm-input {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px 18px;
+    gap: 7px;
+    padding: 7px 10px 16px;
     background: #fff;
     border-top: 1px solid #d6e4da;
   }
-  .chat__field {
+  .pm-field {
     flex: 1;
-    padding: 8px 12px;
+    padding: 7px 11px;
     border-radius: 999px;
     border: 1px solid #d6e4da;
-    font-size: 12px;
+    font-size: calc(var(--pm-fs) * 0.95);
     color: #587083;
   }
-  .chat__mic {
-    width: 30px;
-    height: 30px;
+  .pm-mic {
+    width: calc(var(--pm-fs) * 2.3);
+    height: calc(var(--pm-fs) * 2.3);
     border-radius: 999px;
     background: #008540;
     position: relative;
   }
-  .chat__mic::before {
+  .pm-mic::before {
     content: "";
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 6px;
-    height: 10px;
+    width: 20%;
+    height: 34%;
     transform: translate(-50%, -60%);
     border-radius: 3px;
     background: #fff;
   }
-  @keyframes bubble-in {
+  @keyframes pm-bubble-in {
     to {
       opacity: 1;
       transform: none;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .bubble {
+    .pm-bubble {
       opacity: 1;
       transform: none;
       animation: none;

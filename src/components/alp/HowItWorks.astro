@@ -1,38 +1,6 @@
 ---
-const modes = [
-  {
-    kicker: "Learn",
-    title: "Short lessons you can read or listen to",
-    body:
-      "Each ALP course is delivered as a sequence of short messages with an audio version of every lesson. Learners move at their own pace, and the coach remembers where they stopped.",
-    img: "/images/alp/screens/15_learning_lesson-text.png",
-    alt: "A lesson delivered as a short WhatsApp message with an audio version",
-  },
-  {
-    kicker: "Check",
-    title: "A quiz after every lesson",
-    body:
-      "Quick questions confirm understanding before moving on. Wrong answers get an explanation, right answers unlock the next course, and progress is shown as the learner goes.",
-    img: "/images/alp/screens/17_learning_quiz.png",
-    alt: "A quiz answer with explanation and progress through the category",
-  },
-  {
-    kicker: "Ask",
-    title: "A coach that answers from ALP content only",
-    body:
-      "Type or speak a question at any time. Answers are grounded in the validated ALP curriculum rather than general internet knowledge, and include diagrams and images where they help.",
-    img: "/images/alp/screens/18_qa_text-question.png",
-    alt: "A typed question answered by ALP Coach",
-  },
-  {
-    kicker: "Speak",
-    title: "Voice in, voice out",
-    body:
-      "Learners who prefer speaking can send a voice note and hear the reply. Voice works in the learner's chosen language, so the coach sounds local rather than translated.",
-    img: "/images/alp/screens/20_qa_voice-response.png",
-    alt: "A voice note question answered by ALP Coach",
-  },
-];
+import PhoneMock from "./PhoneMock.astro";
+import Wave from "./Wave.astro";
 
 // Minimal stroke icons (24x24 viewBox paths).
 const facts = [
@@ -72,18 +40,110 @@ const facts = [
     </div>
 
     <div class="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
-      {
-        modes.map((m) => (
-          <article class="group flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
-            <div class="relative mx-auto mb-5 w-full max-w-[220px] overflow-hidden rounded-[22px] border-[6px] border-alp-navy bg-alp-navy shadow-lg">
-              <img src={m.img} alt={m.alt} class="aspect-[512/963] w-full object-cover object-top" loading="lazy" width="512" height="963" />
+      <!-- Learn -->
+      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
+        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+          <PhoneMock compact label="Lesson preview">
+            <div class="pm-bubble pm-coach" style="--i: 1">
+              <p class="pm-kicker">Cash flow and budgets</p>
+              <p>Does my business need a cash budget? Consider an agro retail shop that bought a new pickup for deliveries but now cannot cover the rent because of poor cash management.</p>
             </div>
-            <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">{m.kicker}</p>
-            <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">{m.title}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-alp-muted">{m.body}</p>
-          </article>
-        ))
-      }
+            <div class="pm-bubble pm-coach pm-voice" style="--i: 2" aria-label="Lesson audio, 12 seconds">
+              <span class="pm-play" aria-hidden="true"></span>
+              <Wave bars={16} />
+              <span class="pm-time">0:12</span>
+            </div>
+            <div class="pm-bubble pm-user" style="--i: 3">Continue</div>
+          </PhoneMock>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Learn</p>
+        <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">Short lessons you can read or listen to</h3>
+        <p class="mt-2 text-sm leading-relaxed text-alp-muted">
+          Each ALP course is delivered as a sequence of short messages with an audio version of every lesson.
+          Learners move at their own pace, and the coach remembers where they stopped.
+        </p>
+      </article>
+
+      <!-- Check -->
+      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
+        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+          <PhoneMock compact label="Quiz preview">
+            <div class="pm-bubble pm-coach" style="--i: 1">
+              <p class="pm-title">Cash budgets are important because:</p>
+              <span class="pm-option">A. They inform management decisions</span>
+              <span class="pm-option">B. They reveal gaps between plan and actual</span>
+              <span class="pm-option pm-option--correct">C. Both of the above</span>
+            </div>
+            <div class="pm-bubble pm-user" style="--i: 2">C</div>
+            <div class="pm-bubble pm-coach" style="--i: 3">
+              <p class="pm-title">Correct.</p>
+              <p>Cash budgets guide decisions and show where actual performance differs from the plan.</p>
+              <p class="pm-meta">Cash flow and budgets · 40% complete</p>
+              <span class="pm-progress" style="--w: 40%"><i></i></span>
+            </div>
+          </PhoneMock>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Check</p>
+        <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">A quiz after every lesson</h3>
+        <p class="mt-2 text-sm leading-relaxed text-alp-muted">
+          Quick questions confirm understanding before moving on. Wrong answers get an explanation, right
+          answers unlock the next course, and progress is shown as the learner goes.
+        </p>
+      </article>
+
+      <!-- Ask -->
+      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
+        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+          <PhoneMock compact label="Question preview">
+            <div class="pm-bubble pm-user" style="--i: 1">A customer says my price is too high. What can I do?</div>
+            <div class="pm-bubble pm-coach" style="--i: 2">
+              <p>Three options, depending on your margins:</p>
+              <p><strong>Adjust the price</strong> if you can still cover costs and keep a profit.</p>
+              <p><strong>Emphasise value</strong>: quality, service, convenience.</p>
+              <p><strong>Offer a promotion</strong> rather than a permanent cut.</p>
+            </div>
+            <div class="pm-bubble pm-coach pm-card" style="--i: 3">
+              <p class="pm-kicker">From the curriculum</p>
+              <p class="pm-title">Pricing your products</p>
+              <p class="pm-meta">Fundamentals of Retail Management</p>
+            </div>
+          </PhoneMock>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Ask</p>
+        <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">A coach that answers from ALP content only</h3>
+        <p class="mt-2 text-sm leading-relaxed text-alp-muted">
+          Type a question at any time. Answers are grounded in the validated ALP curriculum rather than
+          general internet knowledge, and include diagrams and images where they help.
+        </p>
+      </article>
+
+      <!-- Speak -->
+      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
+        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+          <PhoneMock compact label="Voice preview">
+            <div class="pm-bubble pm-user pm-voice" style="--i: 1" aria-label="Voice message, 4 seconds">
+              <span class="pm-play" aria-hidden="true"></span>
+              <Wave bars={14} />
+              <span class="pm-time">0:04</span>
+            </div>
+            <div class="pm-bubble pm-coach" style="--i: 2">
+              <p class="pm-meta">You asked: how do I keep my stock records?</p>
+              <p>Record every item that comes in and goes out on the same day, in one book or sheet. Count stock at the end of each week and compare it with the book.</p>
+            </div>
+            <div class="pm-bubble pm-coach pm-voice" style="--i: 3" aria-label="Spoken answer, 18 seconds">
+              <span class="pm-play" aria-hidden="true"></span>
+              <Wave bars={16} />
+              <span class="pm-time">0:18</span>
+            </div>
+          </PhoneMock>
+        </div>
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Speak</p>
+        <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">Voice in, voice out</h3>
+        <p class="mt-2 text-sm leading-relaxed text-alp-muted">
+          Learners who prefer speaking can send a voice note and hear the reply. Voice works in the
+          learner's chosen language, so the coach sounds local rather than translated.
+        </p>
+      </article>
     </div>
 
     <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

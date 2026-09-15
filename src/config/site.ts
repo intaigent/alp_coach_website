@@ -56,27 +56,15 @@ export const site = {
   ],
 
   deployments: [
-    {
-      country: "Tanzania",
-      since: "2024",
-      channels: "Telegram",
-      languages: "Swahili and English",
-      audience: "Agri-entrepreneurs",
-      story: "Agri-entrepreneurs follow the bookkeeping and retail management paths in Swahili, most of them by voice, and ask the coach about stock records, pricing and customer care.",
-      feature: {
-        text: "Cliford Magoti, an agri-entrepreneur in Kasuguti, uses the coach \u201cas a virtual agri-coach on demand in Swahili and English.\u201d",
-        source: "Featured in an IFC story, October 2025",
-        url: "https://www.ifc.org/en/stories/2025/empowering-tanzania-s-farmers-one-entrepreneur-at-a-time",
-        label: "Read the story",
-      },
-    },
-    {
-      country: "Bangladesh",
-      since: "2026",
-      channels: "WhatsApp and Telegram",
-      languages: "Bengali and English",
-      audience: "Coaches and agri-entrepreneurs",
-      story: "Coaches use it alongside in-person training; entrepreneurs come back on their own to ask about bookkeeping, saving from the business and dealing with customer credit.",
-    },
+    { country: "Tanzania", since: "2024", channels: "Telegram", languages: "Swahili and English", audience: "Agri-entrepreneurs" },
+    { country: "Bangladesh", since: "2026", channels: "WhatsApp", languages: "Bengali and English", audience: "Coaches and agri-entrepreneurs" },
   ],
+
+  // One external reference for the section above.
+  fieldStory: {
+    text: "Cliford Magoti, an agri-entrepreneur in Kasuguti, Tanzania, uses the coach \u201cas a virtual agri-coach on demand in Swahili and English.\u201d",
+    source: "From an IFC story, October 2025",
+    url: "https://www.ifc.org/en/stories/2025/empowering-tanzania-s-farmers-one-entrepreneur-at-a-time",
+    label: "Read the story",
+  },
 };

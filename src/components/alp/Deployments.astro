@@ -1,61 +1,60 @@
 ---
 import { site } from "../../config/site";
+const cols = [
+  { key: "since", label: "Since" },
+  { key: "channels", label: "Channel" },
+  { key: "languages", label: "Languages" },
+  { key: "audience", label: "Learners" },
+] as const;
 ---
 
 <section id="field" class="reveal py-20 lg:py-28">
   <div class="mx-auto max-w-7xl px-6 md:px-12 xl:px-6">
-    <div class="max-w-2xl">
-      <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">In the field</p>
-      <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-alp-navy sm:text-4xl">
-        Already coaching in two countries
-      </h2>
-      <p class="mt-4 text-lg text-alp-muted">
-        ALP Coach has been used by real learners in their own language in two countries. Both now run on
-        the same platform as the full ALP Coach, one bot per channel.
-      </p>
-    </div>
+    <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+      <div class="lg:col-span-5">
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">In the field</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-alp-navy sm:text-4xl">
+          Already coaching in two countries
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-alp-muted">
+          The same content and the same coach, used by real learners since 2024: in Swahili on Telegram
+          in Tanzania, and in Bengali on WhatsApp in Bangladesh. Both run on the platform behind the
+          full ALP Coach, one bot per channel.
+        </p>
+      </div>
 
-    <div class="mt-12 overflow-hidden rounded-3xl border border-alp-border bg-white shadow-sm">
-      <div class="grid divide-y divide-alp-border md:grid-cols-2 md:divide-x md:divide-y-0">
-        {
-          site.deployments.map((d) => (
-            <div class="flex flex-col p-8">
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="text-2xl font-extrabold text-alp-navy">{d.country}</h3>
-                <p class="text-sm text-alp-muted">
-                  Since {d.since}
-                  <span class="ml-3 rounded-full bg-alp-bright/15 px-2.5 py-0.5 text-xs font-bold text-alp-green">Live</span>
-                </p>
-              </div>
-              <dl class="mt-6 grid grid-cols-3 gap-4 text-sm">
-                <div>
-                  <dt class="text-[11px] font-semibold uppercase tracking-wider text-alp-muted">Channels</dt>
-                  <dd class="mt-0.5 font-semibold text-alp-navy">{d.channels}</dd>
-                </div>
-                <div>
-                  <dt class="text-[11px] font-semibold uppercase tracking-wider text-alp-muted">Languages</dt>
-                  <dd class="mt-0.5 font-semibold text-alp-navy">{d.languages}</dd>
-                </div>
-                <div>
-                  <dt class="text-[11px] font-semibold uppercase tracking-wider text-alp-muted">Learners</dt>
-                  <dd class="mt-0.5 font-semibold text-alp-navy">{d.audience}</dd>
-                </div>
-              </dl>
-              <p class="mt-5 text-sm leading-relaxed text-alp-muted">{d.story}</p>
-              {"feature" in d && d.feature && (
-                <p class="mt-4 text-sm leading-relaxed text-alp-navy">
-                  {d.feature.text}
-                  <span class="block mt-1 text-xs text-alp-muted">
-                    {d.feature.source}.
-                    <a href={d.feature.url} target="_blank" rel="noopener" class="ml-1 font-semibold text-alp-green hover:text-alp-navy">
-                      {d.feature.label} <span aria-hidden="true">↗</span>
-                    </a>
-                  </span>
-                </p>
-              )}
-            </div>
-          ))
-        }
+      <div class="lg:col-span-7">
+        <div class="overflow-hidden rounded-3xl border border-alp-border bg-white shadow-sm">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="border-b border-alp-border bg-alp-surface text-[11px] font-semibold uppercase tracking-wider text-alp-muted">
+                  <th scope="col" class="px-6 py-3">Country</th>
+                  {cols.map((c) => <th scope="col" class="px-4 py-3">{c.label}</th>)}
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-alp-border">
+                {
+                  site.deployments.map((d) => (
+                    <tr>
+                      <th scope="row" class="px-6 py-4 text-base font-extrabold text-alp-navy">{d.country}</th>
+                      {cols.map((c) => <td class="px-4 py-4 font-medium text-alp-navy">{d[c.key]}</td>)}
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+          <div class="border-t border-alp-border bg-alp-surface px-6 py-5">
+            <p class="text-sm leading-relaxed text-alp-navy">{site.fieldStory.text}</p>
+            <p class="mt-1.5 text-xs text-alp-muted">
+              {site.fieldStory.source}.
+              <a href={site.fieldStory.url} target="_blank" rel="noopener" class="ml-1 font-semibold text-alp-green hover:text-alp-navy">
+                {site.fieldStory.label} <span aria-hidden="true">↗</span>
+              </a>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

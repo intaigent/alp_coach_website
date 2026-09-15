@@ -45,15 +45,19 @@ const facts = [
         <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
           <PhoneMock compact label="Lesson preview">
             <div class="pm-bubble pm-coach" style="--i: 1">
-              <p class="pm-kicker">Cash flow and budgets</p>
-              <p>Does my business need a cash budget? Consider an agro retail shop that bought a new pickup for deliveries but now cannot cover the rent because of poor cash management.</p>
+              <p>Cash flow and budgets. Please choose from:</p>
+              <p>1. Cash flow budget<br />2. Cash reserves<br />3. Learning path menu</p>
             </div>
-            <div class="pm-bubble pm-coach pm-voice" style="--i: 2" aria-label="Lesson audio, 12 seconds">
+            <div class="pm-bubble pm-user" style="--i: 2">1</div>
+            <div class="pm-bubble pm-coach" style="--i: 3">
+              Does my business need a cash budget? Consider an agro retail shop that recently bought a new
+              pickup for deliveries but now can't cover the rent due to poor cash management.
+            </div>
+            <div class="pm-bubble pm-coach pm-voice" style="--i: 4" aria-label="Lesson audio, 12 seconds">
               <span class="pm-play" aria-hidden="true"></span>
               <Wave bars={16} />
               <span class="pm-time">0:12</span>
             </div>
-            <div class="pm-bubble pm-user" style="--i: 3">Continue</div>
           </PhoneMock>
         </div>
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Learn</p>
@@ -69,17 +73,21 @@ const facts = [
         <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
           <PhoneMock compact label="Quiz preview">
             <div class="pm-bubble pm-coach" style="--i: 1">
-              <p class="pm-title">Cash budgets are important because:</p>
-              <span class="pm-option">A. They inform management decisions</span>
-              <span class="pm-option">B. They reveal gaps between plan and actual</span>
-              <span class="pm-option pm-option--correct">C. Both of the above</span>
+              <p>Cash budgets are important, because:</p>
+              <p>A) They provide valuable information for management decisions.<br />
+              B) They help identify discrepancies between actual and expected performance.<br />
+              C) Both of the above.</p>
             </div>
-            <div class="pm-bubble pm-user" style="--i: 2">C</div>
+            <div class="pm-bubble pm-user" style="--i: 2">B</div>
             <div class="pm-bubble pm-coach" style="--i: 3">
-              <p class="pm-title">Correct.</p>
-              <p>Cash budgets guide decisions and show where actual performance differs from the plan.</p>
-              <p class="pm-meta">Cash flow and budgets · 40% complete</p>
-              <span class="pm-progress" style="--w: 40%"><i></i></span>
+              <p>Nice try! But not quite correct. The correct answer is C.</p>
+              <p>Cash budgets are important for both reasons. They provide valuable information for
+              management decisions and help owners identify discrepancies between actual and expected
+              performance.</p>
+            </div>
+            <div class="pm-bubble pm-coach" style="--i: 4">
+              <p>Congratulations, you have completed 40% of the Cash flow and budgets category.</p>
+              <p>1. Go to next course<br />2. Cash flow and budgets</p>
             </div>
           </PhoneMock>
         </div>
@@ -95,17 +103,17 @@ const facts = [
       <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
         <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
           <PhoneMock compact label="Question preview">
-            <div class="pm-bubble pm-user" style="--i: 1">A customer says my price is too high. What can I do?</div>
+            <div class="pm-bubble pm-user" style="--i: 1">My customer says my price is too high. What should I do?</div>
             <div class="pm-bubble pm-coach" style="--i: 2">
-              <p>Three options, depending on your margins:</p>
-              <p><strong>Adjust the price</strong> if you can still cover costs and keep a profit.</p>
-              <p><strong>Emphasise value</strong>: quality, service, convenience.</p>
-              <p><strong>Offer a promotion</strong> rather than a permanent cut.</p>
-            </div>
-            <div class="pm-bubble pm-coach pm-card" style="--i: 3">
-              <p class="pm-kicker">From the curriculum</p>
-              <p class="pm-title">Pricing your products</p>
-              <p class="pm-meta">Fundamentals of Retail Management</p>
+              <p>To address your customer's concern about your price being too high, you can consider the
+              following strategies:</p>
+              <p>1. Adjust your price: evaluate if you can slightly lower your price while still covering
+              your costs and maintaining a profit.</p>
+              <p>2. Emphasize value and benefits: highlight the quality, customer service or convenience
+              that justify the current price.</p>
+              <p>3. Offer promotions or discounts: limited-time offers attract customers without
+              permanently lowering your prices.</p>
+              <p class="pm-meta">Ask another question, or type 0 for the main menu</p>
             </div>
           </PhoneMock>
         </div>
@@ -127,8 +135,9 @@ const facts = [
               <span class="pm-time">0:04</span>
             </div>
             <div class="pm-bubble pm-coach" style="--i: 2">
-              <p class="pm-meta">You asked: how do I keep my stock records?</p>
-              <p>Record every item that comes in and goes out on the same day, in one book or sheet. Count stock at the end of each week and compare it with the book.</p>
+              Record every item that comes in and goes out on the same day, in one book or sheet. Count
+              your stock at the end of each week and compare it with the book, so you notice any difference
+              early.
             </div>
             <div class="pm-bubble pm-coach pm-voice" style="--i: 3" aria-label="Spoken answer, 18 seconds">
               <span class="pm-play" aria-hidden="true"></span>

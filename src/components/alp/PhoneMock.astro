@@ -4,12 +4,13 @@
 // Styles are global so slotted bubbles pick them up; classes are prefixed "pm-".
 interface Props {
   compact?: boolean;
+  live?: boolean; // bubbles are revealed by a script instead of the CSS stagger
   label?: string;
 }
-const { compact = false, label = "ALP Coach chat preview" } = Astro.props;
+const { compact = false, live = false, label = "ALP Coach chat preview" } = Astro.props;
 ---
 
-<div class:list={["pm-phone", { "pm-phone--compact": compact }]} aria-label={label}>
+<div class:list={["pm-phone", { "pm-phone--compact": compact, "pm-phone--live": live }]} aria-label={label}>
   <div class="pm-screen">
     <div class="pm-notch" aria-hidden="true"></div>
 
@@ -23,12 +24,12 @@ const { compact = false, label = "ALP Coach chat preview" } = Astro.props;
       </div>
     </header>
 
-    <div class="pm-body">
+    <div class:list={["pm-body", { "pm-body--live": live }]}>
       <slot />
     </div>
 
     <footer class="pm-input" aria-hidden="true">
-      <span class="pm-field">Ask the coach…</span>
+      <span class="pm-field" data-pm-field data-placeholder="Ask the coach…">Ask the coach…</span>
       <span class="pm-mic"></span>
     </footer>
   </div>
@@ -162,49 +163,9 @@ const { compact = false, label = "ALP Coach chat preview" } = Astro.props;
     border-bottom-right-radius: 4px;
     font-weight: 500;
   }
-  .pm-card {
-    border-left: 3px solid #00bb33;
-  }
-  .pm-kicker {
-    font-size: calc(var(--pm-fs) * 0.76);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #008540;
-  }
-  .pm-title {
-    font-weight: 700;
-  }
   .pm-meta {
     font-size: calc(var(--pm-fs) * 0.84);
     color: #587083;
-  }
-  .pm-option {
-    display: block;
-    margin-top: 5px;
-    padding: 5px 8px;
-    border-radius: 8px;
-    border: 1px solid #d6e4da;
-    font-size: calc(var(--pm-fs) * 0.92);
-  }
-  .pm-option--correct {
-    border-color: #00bb33;
-    background: rgba(0, 187, 51, 0.08);
-    font-weight: 600;
-  }
-  .pm-progress {
-    display: block;
-    margin-top: 6px;
-    height: 4px;
-    border-radius: 999px;
-    background: #e3ece6;
-    overflow: hidden;
-  }
-  .pm-progress i {
-    display: block;
-    height: 100%;
-    width: var(--w, 40%);
-    background: #00bb33;
   }
   .pm-voice {
     display: flex;
@@ -278,6 +239,77 @@ const { compact = false, label = "ALP Coach chat preview" } = Astro.props;
     border-radius: 3px;
     background: #fff;
   }
+  /* Live mode: script controls the reveal; newest message stays visible. */
+  .pm-body--live {
+    justify-content: flex-end;
+    transition: opacity 0.4s ease;
+  }
+  .pm-body--live.is-resetting {
+    opacity: 0;
+  }
+  .pm-body--live .pm-bubble:not(.is-on) {
+    display: none;
+  }
+  .pm-body--live .pm-bubble {
+    animation: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition:
+      opacity 0.35s ease-out,
+      transform 0.35s ease-out;
+  }
+  .pm-body--live .pm-bubble.is-in {
+    opacity: 1;
+    transform: none;
+  }
+  .pm-typing {
+    display: flex;
+    gap: 4px;
+    padding: 10px 12px;
+  }
+  .pm-typing i {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #587083;
+    animation: pm-typing 1.2s ease-in-out infinite;
+  }
+  .pm-typing i:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  .pm-typing i:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+  .pm-field.is-typing {
+    color: #002345;
+  }
+  .pm-field.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 0.9em;
+    margin-left: 1px;
+    vertical-align: -0.1em;
+    background: #002345;
+    animation: pm-caret 1s steps(2) infinite;
+  }
+  @keyframes pm-typing {
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    30% {
+      transform: translateY(-3px);
+      opacity: 1;
+    }
+  }
+  @keyframes pm-caret {
+    to {
+      opacity: 0;
+    }
+  }
   @keyframes pm-bubble-in {
     to {
       opacity: 1;
@@ -285,9 +317,21 @@ const { compact = false, label = "ALP Coach chat preview" } = Astro.props;
     }
   }
   @media (prefers-reduced-motion: reduce) {
-    .pm-bubble {
+    .pm-body--live .pm-bubble:not(.is-on) {
+      display: block;
+    }
+    .pm-body--live .pm-voice:not(.is-on) {
+      display: flex;
+    }
+    .pm-bubble,
+    .pm-body--live .pm-bubble {
       opacity: 1;
       transform: none;
+      animation: none;
+      transition: none;
+    }
+    .pm-typing i,
+    .pm-field.is-typing::after {
       animation: none;
     }
   }

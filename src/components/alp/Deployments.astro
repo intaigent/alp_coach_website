@@ -10,50 +10,53 @@ import { site } from "../../config/site";
         Already coaching in two countries
       </h2>
       <p class="mt-4 text-lg text-alp-muted">
-        ALP Coach has been used by real learners in their own language in two countries. Both now run on the same platform as the full ALP Coach, one bot per channel.
+        ALP Coach has been used by real learners in their own language in two countries. Both now run on
+        the same platform as the full ALP Coach, one bot per channel.
       </p>
     </div>
 
-    <div class="mt-12 grid gap-6 lg:grid-cols-2">
-      {
-        site.deployments.map((d) => (
-          <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-8 shadow-sm">
-            <div class="flex items-start justify-between gap-4">
-              <div>
+    <div class="mt-12 overflow-hidden rounded-3xl border border-alp-border bg-white shadow-sm">
+      <div class="grid divide-y divide-alp-border md:grid-cols-2 md:divide-x md:divide-y-0">
+        {
+          site.deployments.map((d) => (
+            <div class="flex flex-col p-8">
+              <div class="flex items-baseline justify-between gap-4">
                 <h3 class="text-2xl font-extrabold text-alp-navy">{d.country}</h3>
-                <p class="text-sm text-alp-muted">Since {d.since}</p>
-              </div>
-              <span class="rounded-full bg-alp-bright/15 px-3 py-1 text-xs font-bold text-alp-green">Live</span>
-            </div>
-            <dl class="mt-6 grid grid-cols-1 gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
-              <div>
-                <dt class="font-semibold uppercase tracking-wider text-alp-muted text-[11px]">Channels</dt>
-                <dd class="mt-0.5 font-semibold text-alp-navy">{d.channels}</dd>
-              </div>
-              <div>
-                <dt class="font-semibold uppercase tracking-wider text-alp-muted text-[11px]">Languages</dt>
-                <dd class="mt-0.5 font-semibold text-alp-navy">{d.languages}</dd>
-              </div>
-              <div>
-                <dt class="font-semibold uppercase tracking-wider text-alp-muted text-[11px]">Learners</dt>
-                <dd class="mt-0.5 font-semibold text-alp-navy">{d.audience}</dd>
-              </div>
-            </dl>
-            <p class="mt-6 border-t border-alp-border pt-5 text-sm leading-relaxed text-alp-muted">{d.story}</p>
-            {"feature" in d && d.feature && (
-              <div class="mt-5 rounded-2xl bg-alp-surface p-5">
-                <p class="text-sm leading-relaxed text-alp-navy">{d.feature.text}</p>
-                <p class="mt-2 text-xs text-alp-muted">
-                  {d.feature.source}.
-                  <a href={d.feature.url} target="_blank" rel="noopener" class="ml-1 font-semibold text-alp-green hover:text-alp-navy">
-                    {d.feature.label} <span aria-hidden="true">↗</span>
-                  </a>
+                <p class="text-sm text-alp-muted">
+                  Since {d.since}
+                  <span class="ml-3 rounded-full bg-alp-bright/15 px-2.5 py-0.5 text-xs font-bold text-alp-green">Live</span>
                 </p>
               </div>
-            )}
-          </article>
-        ))
-      }
+              <dl class="mt-6 grid grid-cols-3 gap-4 text-sm">
+                <div>
+                  <dt class="text-[11px] font-semibold uppercase tracking-wider text-alp-muted">Channels</dt>
+                  <dd class="mt-0.5 font-semibold text-alp-navy">{d.channels}</dd>
+                </div>
+                <div>
+                  <dt class="text-[11px] font-semibold uppercase tracking-wider text-alp-muted">Languages</dt>
+                  <dd class="mt-0.5 font-semibold text-alp-navy">{d.languages}</dd>
+                </div>
+                <div>
+                  <dt class="text-[11px] font-semibold uppercase tracking-wider text-alp-muted">Learners</dt>
+                  <dd class="mt-0.5 font-semibold text-alp-navy">{d.audience}</dd>
+                </div>
+              </dl>
+              <p class="mt-5 text-sm leading-relaxed text-alp-muted">{d.story}</p>
+              {"feature" in d && d.feature && (
+                <p class="mt-4 text-sm leading-relaxed text-alp-navy">
+                  {d.feature.text}
+                  <span class="block mt-1 text-xs text-alp-muted">
+                    {d.feature.source}.
+                    <a href={d.feature.url} target="_blank" rel="noopener" class="ml-1 font-semibold text-alp-green hover:text-alp-navy">
+                      {d.feature.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  </span>
+                </p>
+              )}
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

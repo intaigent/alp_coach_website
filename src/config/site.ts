@@ -63,8 +63,6 @@ export const site = {
       channels: "Telegram",
       languages: "Swahili and English",
       audience: "Agro-dealers and farm advisors",
-      link: "https://t.me/alp_blf_pilot_bot",
-      linkLabel: "Open the Tanzania bot",
     },
     {
       country: "Bangladesh",
@@ -73,8 +71,6 @@ export const site = {
       channels: "WhatsApp and Telegram",
       languages: "Bengali and English",
       audience: "Coaches and agri-entrepreneurs in Rangpur, Rajshahi and Dhaka",
-      link: "",
-      linkLabel: "",
     },
   ],
 };

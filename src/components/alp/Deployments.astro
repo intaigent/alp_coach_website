@@ -11,7 +11,7 @@ import { site } from "../../config/site";
       </h2>
       <p class="mt-4 text-lg text-alp-muted">
         ALP Coach grew out of country programmes where it has been used by real learners in their own
-        language. Those deployments run on the same platform as the full ALP Coach.
+        language. Both now run on the same platform as the full ALP Coach, one bot per channel.
       </p>
     </div>
 
@@ -44,16 +44,6 @@ import { site } from "../../config/site";
                 <dd class="mt-0.5 font-semibold text-alp-navy">{d.audience}</dd>
               </div>
             </dl>
-            {d.link && (
-              <a
-                href={d.link}
-                target="_blank"
-                rel="noopener"
-                class="mt-6 inline-flex w-max items-center gap-1 text-sm font-semibold text-alp-green hover:text-alp-navy"
-              >
-                {d.linkLabel} <span aria-hidden="true">↗</span>
-              </a>
-            )}
           </article>
         ))
       }

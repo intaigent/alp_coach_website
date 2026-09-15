@@ -47,10 +47,19 @@ const anyLive = channels.some((c) => c.live);
         {
           anyLive
             ? "Scan or tap, say hello, and register in about a minute. Then take a lesson or ask the coach a question."
-            : "The same coach on both channels: register in about a minute, then take a lesson or ask a question. Access details will be published here."
+            : "The same coach on both channels: register in about a minute, then take a lesson or ask a question."
         }
       </p>
     </div>
+
+    {
+      !anyLive && (
+        <p class="mx-auto mt-6 max-w-2xl rounded-xl border border-dashed border-alp-yellow bg-alp-yellow/15 px-4 py-3 text-center text-sm text-alp-navy">
+          <span class="font-bold">Draft note:</span> the two cards below are placeholders. In the live version each one
+          carries the QR code and link for the production bot, added as soon as the bots are cleared for public access.
+        </p>
+      )
+    }
 
     <div class="mt-12 grid gap-6 md:grid-cols-2">
       {
@@ -86,7 +95,7 @@ const anyLive = channels.some((c) => c.live);
                   <img src={c.logo} alt="" class="h-14 w-14 opacity-30 grayscale" width="56" height="56" />
                 </div>
                 <p class="mt-6 max-w-xs text-alp-muted">
-                  The QR code and link for {c.name} will appear here at launch.
+                  Placeholder: {c.name} QR code and link go here.
                 </p>
               </>
             )}

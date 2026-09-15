@@ -1,6 +1,7 @@
 ---
 import PhoneMock from "./PhoneMock.astro";
 import Voice from "./Voice.astro";
+import { site } from "../../config/site";
 
 // Minimal stroke icons (24x24 viewBox paths).
 const facts = [
@@ -50,14 +51,13 @@ const mockClass = "mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-
           <PhoneMock compact label="Lesson preview">
             <div class="pm-bubble pm-coach" style="--i: 1" data-time="5:15 PM">
               <Voice time="0:22" bars={18} />
-              <p>Main Menu. Please choose from:</p>
-              <p>1. Fundamentals of Cooperatives<br />2. Producer Organization Essentials<br />3. Fundamentals of Retail Management<br />4. Bookkeeping Essentials</p>
+              <p>Please choose your learning path:</p>
+              <ol class="pm-list">
+                {site.learningPaths.map((lp, i) => <li>{i + 1}. {lp.title}</li>)}
+              </ol>
             </div>
             <div class="pm-keys" style="--i: 2">
-              <span class="pm-key"><i></i>Fundamentals of Cooperatives</span>
-              <span class="pm-key"><i></i>Producer Organization Essentials</span>
-              <span class="pm-key"><i></i>Fundamentals of Retail Management</span>
-              <span class="pm-key"><i></i>Bookkeeping Essentials</span>
+              {site.learningPaths.map((lp) => <span class="pm-key"><i></i>{lp.title}</span>)}
             </div>
             <div class="pm-bubble pm-coach" style="--i: 3" data-time="5:16 PM">
               <Voice time="0:09" bars={18} />
@@ -88,7 +88,12 @@ const mockClass = "mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-
             </div>
             <div class="pm-bubble pm-coach" style="--i: 3" data-time="5:20 PM">
               <p>Which of the following is a Convenience Factor?</p>
-              <p>A: Well-trained staff<br />B: Payment Terms<br />C: Product Quality<br />D: All of the above</p>
+              <ul class="pm-list">
+                <li>A: Well-trained staff</li>
+                <li>B: Payment Terms</li>
+                <li>C: Product Quality</li>
+                <li>D: All of the above</li>
+              </ul>
             </div>
             <div class="pm-keys pm-keys--2" style="--i: 4">
               <span class="pm-key">A</span>
@@ -119,12 +124,11 @@ const mockClass = "mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-
             <div class="pm-bubble pm-coach" style="--i: 2" data-time="5:43 PM">
               <p>To address your customer's concern about your price being too high, you can consider the
               following strategies:</p>
-              <p>1. Adjust your price: evaluate if you can slightly lower your price while still covering
-              your costs and maintaining a profit.</p>
-              <p>2. Emphasize value and benefits: highlight the quality, customer service or convenience
-              that justify the current price.</p>
-              <p>3. Offer promotions or discounts: limited-time offers attract customers without
-              permanently lowering your prices.</p>
+              <ol class="pm-list">
+                <li>1. Adjust your price: evaluate if you can slightly lower your price while still covering your costs and maintaining a profit.</li>
+                <li>2. Emphasize value and benefits: highlight the quality, customer service or convenience that justify the current price.</li>
+                <li>3. Offer promotions or discounts: limited-time offers attract customers without permanently lowering your prices.</li>
+              </ol>
             </div>
             <div class="pm-keys" style="--i: 3">
               <span class="pm-key">Listen to the answer</span>

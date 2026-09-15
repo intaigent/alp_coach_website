@@ -1,40 +1,71 @@
 ---
 import AppFooter from "../components/AppFooter.astro";
 import AppHeader from "../components/AppHeader.astro";
+import { site } from "../config/site";
 
 interface Props {
-  title: string;
-  isMainPage?: boolean;
+  title?: string;
+  description?: string;
 }
 
-const { title, isMainPage = false } = Astro.props;
+const { title = site.name, description = site.description } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/png" href="/favicon.png" />
-        <meta name="generator" content={Astro.generator} />
-        <meta name="description" content="intaigent - Harnessing AI, Simplifying Solutions" />
-        <title>intaigent</title>
-
-        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    </head>
-    <body class="bg-white dark:bg-gray-900">
-        <AppHeader isMainPage={isMainPage} />
-        <slot />
-        <AppFooter />
-    </body>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/alp/dashboard/home.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white text-alp-navy antialiased">
+    <AppHeader />
+    <slot />
+    <AppFooter />
+  </body>
 </html>
-<style>
-    html {
-        font-family: Urbanist, sans-serif;
-        scroll-behavior: smooth;
-    }
 
-    body {
-        margin: 0;
+<style is:global>
+  html {
+    font-family: Urbanist, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  body {
+    margin: 0;
+  }
+  ::selection {
+    background: #00bb33;
+    color: #002345;
+  }
+  /* Sections fade in as they enter the viewport (see script in index.astro). */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
+  }
 </style>

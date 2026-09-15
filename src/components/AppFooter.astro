@@ -1,23 +1,29 @@
 ---
-import Container from "./Container.astro";
-
+import { site } from "../config/site";
+const year = new Date().getFullYear();
 ---
 
-<footer class="py-20 md:py-10">
-  <div class="relative">
-    <div aria-hidden="true" class="absolute inset-0 h-max w-full grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
-      <div class="blur-[106px] h-20 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
-      <div class="blur-[106px] h-0 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
+<footer class="border-t border-alp-border bg-alp-surface">
+  <div class="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between md:px-12 xl:px-6">
+    <div class="flex items-center gap-4">
+      <img
+        src="/images/alp/brand/alp-logo-primary.png"
+        alt="Agribusiness Leadership Program"
+        class="h-9 w-auto"
+        width="1200"
+        height="332"
+        loading="lazy"
+      />
+      <p class="text-sm text-alp-muted">
+        ALP Coach is the AI learning assistant of the {site.programme}.
+      </p>
     </div>
-  <Container class="text-gray-800 dark:text-white md:text-3xl p-4 flex justify-between items-center">
-    <div>
-      <p>Office address: 86-90 Paul Street, London, England, EC2A 4NE</p>
+    <div class="flex flex-col gap-1 text-sm text-alp-muted md:items-end">
+      <p>
+        Built and operated by
+        <a href="https://intaigent.com" target="_blank" rel="noopener" class="font-semibold text-alp-navy hover:text-alp-green">intaigent</a>
+      </p>
+      <p>&copy; {year} intaigent. All rights reserved.</p>
     </div>
-
-    <div>
-      <p>&copy; 2024 intaigent. All Rights Reserved.</p>
-    </div>
-  </Container>
-</div>
+  </div>
 </footer>
-

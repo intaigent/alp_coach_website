@@ -1,16 +1,42 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Introduction from '../components/agriconnect/Introduction.astro';
-import Chatbot from '../components/agriconnect/Chatbot.astro';
-import AnalyticsDashboard from '../components/agriconnect/AnalyticsDashboard.astro';
-import ContentManagement from '../components/agriconnect/ContentManagement.astro';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/alp/Hero.astro";
+import HowItWorks from "../components/alp/HowItWorks.astro";
+import Curriculum from "../components/alp/Curriculum.astro";
+import TryIt from "../components/alp/TryIt.astro";
+import Deployments from "../components/alp/Deployments.astro";
+import Dashboard from "../components/alp/Dashboard.astro";
+import BringIt from "../components/alp/BringIt.astro";
 ---
 
-<Layout title="AgriConnect - intaigent" isMainPage={true}>
+<Layout>
   <main>
-    <Introduction />
-    <Chatbot />
-    <AnalyticsDashboard />
-    <ContentManagement />
+    <Hero />
+    <HowItWorks />
+    <Curriculum />
+    <TryIt />
+    <Deployments />
+    <Dashboard />
+    <BringIt />
   </main>
 </Layout>
+
+<script>
+  const sections = document.querySelectorAll<HTMLElement>(".reveal");
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+    );
+    sections.forEach((s) => observer.observe(s));
+  } else {
+    sections.forEach((s) => s.classList.add("is-visible"));
+  }
+</script>

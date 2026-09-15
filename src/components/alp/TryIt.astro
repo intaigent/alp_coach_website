@@ -1,0 +1,127 @@
+---
+import { site } from "../../config/site";
+const { telegram, whatsapp, languages } = site;
+
+const statusLabel: Record<string, string> = {
+  available: "Available now",
+  country: "Live in country programmes",
+  planned: "Coming with country launches",
+};
+const statusClass: Record<string, string> = {
+  available: "border-alp-green bg-alp-green text-white",
+  country: "border-alp-green/40 bg-white text-alp-green",
+  planned: "border-alp-border bg-white text-alp-muted",
+};
+---
+
+<section id="try" class="reveal bg-alp-surface py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 md:px-12 xl:px-6">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Try it</p>
+      <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-alp-navy sm:text-4xl">
+        Get in the driver's seat
+      </h2>
+      <p class="mt-4 text-lg text-alp-muted">
+        Scan or tap, say hello, and register in about a minute. Then take a lesson or ask the coach a question.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <!-- Telegram -->
+      <div class="flex flex-col items-center rounded-3xl border border-alp-border bg-white p-8 text-center shadow-sm">
+        <div class="flex items-center gap-2">
+          <img src="/images/telegram-logo.svg" alt="" class="h-7 w-7" width="28" height="28" />
+          <h3 class="text-xl font-bold text-alp-navy">Telegram</h3>
+          {
+            telegram.live ? (
+              <span class="ml-2 rounded-full bg-alp-bright/15 px-2.5 py-0.5 text-xs font-bold text-alp-green">Live</span>
+            ) : (
+              <span class="ml-2 rounded-full bg-alp-border px-2.5 py-0.5 text-xs font-bold text-alp-muted">Soon</span>
+            )
+          }
+        </div>
+        {
+          telegram.live ? (
+            <>
+              <img src={telegram.qr} alt={`QR code for ${telegram.url}`} class="mt-6 h-44 w-44 rounded-xl border border-alp-border" width="290" height="290" loading="lazy" />
+              <a
+                href={telegram.url}
+                target="_blank"
+                rel="noopener"
+                class="mt-6 inline-flex h-12 items-center rounded-full bg-alp-green px-6 text-base font-semibold text-white transition hover:bg-alp-navy"
+              >
+                Open @{telegram.handle}
+              </a>
+              <p class="mt-3 text-sm text-alp-muted">Scan with your phone camera or tap the button.</p>
+            </>
+          ) : (
+            <p class="mt-6 text-alp-muted">Launching soon.</p>
+          )
+        }
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="flex flex-col items-center rounded-3xl border border-alp-border bg-white p-8 text-center shadow-sm">
+        <div class="flex items-center gap-2">
+          <img src="/images/whatsapp-logo.svg" alt="" class="h-7 w-7" width="28" height="28" />
+          <h3 class="text-xl font-bold text-alp-navy">WhatsApp</h3>
+          {
+            whatsapp.live ? (
+              <span class="ml-2 rounded-full bg-alp-bright/15 px-2.5 py-0.5 text-xs font-bold text-alp-green">Live</span>
+            ) : (
+              <span class="ml-2 rounded-full bg-alp-yellow/40 px-2.5 py-0.5 text-xs font-bold text-alp-navy">{whatsapp.launch}</span>
+            )
+          }
+        </div>
+        {
+          whatsapp.live ? (
+            <>
+              {whatsapp.qr && (
+                <img src={whatsapp.qr} alt={`QR code for ${whatsapp.url}`} class="mt-6 h-44 w-44 rounded-xl border border-alp-border" width="290" height="290" loading="lazy" />
+              )}
+              <a
+                href={whatsapp.url}
+                target="_blank"
+                rel="noopener"
+                class="mt-6 inline-flex h-12 items-center rounded-full bg-alp-green px-6 text-base font-semibold text-white transition hover:bg-alp-navy"
+              >
+                Message {whatsapp.displayNumber}
+              </a>
+              <p class="mt-3 text-sm text-alp-muted">Save the number or scan the code, then send any message to start.</p>
+            </>
+          ) : (
+            <>
+              <div class="mt-6 flex h-44 w-44 items-center justify-center rounded-xl border border-dashed border-alp-border bg-alp-surface" aria-hidden="true">
+                <img src="/images/whatsapp-logo.svg" alt="" class="h-14 w-14 opacity-30 grayscale" width="56" height="56" />
+              </div>
+              <p class="mt-6 max-w-xs text-alp-muted">
+                The same coach, same content and same registration on WhatsApp. The number will be published here at launch.
+              </p>
+            </>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="mt-12 rounded-3xl border border-alp-border bg-white p-6 sm:p-8">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 class="text-lg font-bold text-alp-navy">Languages</h3>
+          <p class="mt-1 text-sm text-alp-muted">
+            Adding a language is configuration, not a new bot. Local languages arrive with each country launch.
+          </p>
+        </div>
+      </div>
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {
+          languages.map((l) => (
+            <li class:list={["inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-sm font-semibold", statusClass[l.status]]}>
+              {l.name}
+              <span class="text-[11px] font-medium opacity-80">· {statusLabel[l.status]}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>

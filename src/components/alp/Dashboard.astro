@@ -1,0 +1,76 @@
+---
+const points = [
+  {
+    title: "Who is learning",
+    body: "Registrations, daily active users, return rate and session length, filtered by gender, region, role and age group.",
+  },
+  {
+    title: "How far they get",
+    body: "Learning paths opened, courses completed and quiz results, so the team sees progress rather than sign-ups.",
+  },
+  {
+    title: "What they ask",
+    body: "Every question the coach receives, grouped by topic and intent, with follow-up rate as a signal of real engagement.",
+  },
+  {
+    title: "One view across countries",
+    body: "A cross-country home page with per-country drill-down. Every chart exports as an image or Excel file for reporting.",
+  },
+];
+---
+
+<section id="analytics" class="reveal bg-alp-surface py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 md:px-12 xl:px-6">
+    <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+      <div class="lg:col-span-5">
+        <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Analytics</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-alp-navy sm:text-4xl">
+          A live dashboard for the programme team
+        </h2>
+        <p class="mt-4 text-lg text-alp-muted">
+          Every registration, lesson, quiz and question feeds the ALP Coach Analytics Dashboard, updated as it happens.
+        </p>
+        <ul class="mt-8 space-y-5">
+          {
+            points.map((p) => (
+              <li class="flex gap-4">
+                <span class="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-alp-green text-xs font-bold text-white">✓</span>
+                <div>
+                  <h3 class="font-bold text-alp-navy">{p.title}</h3>
+                  <p class="mt-0.5 text-sm leading-relaxed text-alp-muted">{p.body}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-8 rounded-2xl border border-alp-border bg-white px-5 py-4 text-sm text-alp-muted">
+          Dashboard access is provided to programme teams for each deployment.
+          <a href="#bring" class="font-semibold text-alp-green hover:text-alp-navy">Ask about your programme.</a>
+        </p>
+      </div>
+
+      <div class="relative lg:col-span-7">
+        <div class="overflow-hidden rounded-2xl border border-alp-border bg-white shadow-2xl shadow-alp-navy/15">
+          <img
+            src="/images/alp/dashboard/bangladesh.jpg"
+            alt="ALP Coach Analytics Dashboard: user analytics for a country deployment"
+            class="w-full"
+            width="1200"
+            height="917"
+            loading="lazy"
+          />
+        </div>
+        <div class="mt-4 w-[70%] overflow-hidden rounded-2xl border border-alp-border bg-white shadow-xl shadow-alp-navy/10 sm:absolute sm:-bottom-10 sm:-left-8 sm:mt-0 sm:w-[46%]">
+          <img
+            src="/images/alp/dashboard/home.jpg"
+            alt="ALP Coach Analytics Dashboard: cross-country overview"
+            class="w-full"
+            width="1200"
+            height="917"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

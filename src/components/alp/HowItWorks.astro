@@ -1,0 +1,103 @@
+---
+const modes = [
+  {
+    kicker: "Learn",
+    title: "Short lessons you can read or listen to",
+    body:
+      "Each ALP course is delivered as a sequence of short messages with an audio version of every lesson. Learners move at their own pace, and the coach remembers where they stopped.",
+    img: "/images/alp/screens/15_learning_lesson-text.png",
+    alt: "A lesson delivered as a short WhatsApp message with an audio version",
+  },
+  {
+    kicker: "Check",
+    title: "A quiz after every lesson",
+    body:
+      "Quick questions confirm understanding before moving on. Wrong answers get an explanation, right answers unlock the next course, and progress is shown as the learner goes.",
+    img: "/images/alp/screens/17_learning_quiz.png",
+    alt: "A quiz answer with explanation and progress through the category",
+  },
+  {
+    kicker: "Ask",
+    title: "A coach that answers from ALP content only",
+    body:
+      "Type or speak a question at any time. Answers are grounded in the validated ALP curriculum rather than general internet knowledge, and include diagrams and images where they help.",
+    img: "/images/alp/screens/18_qa_text-question.png",
+    alt: "A typed question answered by ALP Coach",
+  },
+  {
+    kicker: "Speak",
+    title: "Voice in, voice out",
+    body:
+      "Learners who prefer speaking can send a voice note and hear the reply. Voice works in the learner's chosen language, so the coach sounds local rather than translated.",
+    img: "/images/alp/screens/20_qa_voice-response.png",
+    alt: "A voice note question answered by ALP Coach",
+  },
+];
+
+// Minimal stroke icons (24x24 viewBox paths).
+const facts = [
+  {
+    icon: "M4 5h16v11H8l-4 4V5z",
+    title: "WhatsApp and Telegram",
+    body: "No app to install. Learners use the messaging app already on their phone.",
+  },
+  {
+    icon: "M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18",
+    title: "Language chosen in the bot",
+    body: "Learners pick a language at registration and can change it any time.",
+  },
+  {
+    icon: "M12 12a4 4 0 100-8 4 4 0 000 8zM4 21a8 8 0 0116 0",
+    title: "A profile, not just a number",
+    body: "A one-minute registration captures role, region and background, so the coach and the programme know who is learning.",
+  },
+  {
+    icon: "M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 3",
+    title: "Available around the clock",
+    body: "The coach answers at 6 am before market day and at 10 pm after the books are closed.",
+  },
+];
+---
+
+<section id="how-it-works" class="reveal py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 md:px-12 xl:px-6">
+    <div class="max-w-2xl">
+      <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">How it works</p>
+      <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-alp-navy sm:text-4xl">
+        One coach, four ways to learn
+      </h2>
+      <p class="mt-4 text-lg text-alp-muted">
+        Learners follow structured courses or simply ask. Both draw on the same validated ALP content.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
+      {
+        modes.map((m) => (
+          <article class="group flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
+            <div class="relative mx-auto mb-5 w-full max-w-[220px] overflow-hidden rounded-[22px] border-[6px] border-alp-navy bg-alp-navy shadow-lg">
+              <img src={m.img} alt={m.alt} class="aspect-[512/963] w-full object-cover object-top" loading="lazy" width="512" height="963" />
+            </div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">{m.kicker}</p>
+            <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">{m.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-alp-muted">{m.body}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        facts.map((f) => (
+          <div class="rounded-2xl bg-alp-surface p-6">
+            <svg class="h-7 w-7 text-alp-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d={f.icon}></path>
+            </svg>
+            <h3 class="mt-3 font-bold text-alp-navy">{f.title}</h3>
+            <p class="mt-1 text-sm leading-relaxed text-alp-muted">{f.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

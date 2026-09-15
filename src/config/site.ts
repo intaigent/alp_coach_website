@@ -31,7 +31,7 @@ export const site = {
   },
 
   // Where project teams should write to bring ALP Coach to a project.
-  contactEmail: "aline@intaigent.com",
+  contactEmail: "info@intaigent.com",
 
 
   languages: [

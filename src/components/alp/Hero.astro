@@ -3,7 +3,6 @@ import { site } from "../../config/site";
 import PhoneMock from "./PhoneMock.astro";
 import Voice from "./Voice.astro";
 const { telegram, whatsapp } = site;
-const anyLive = telegram.live || whatsapp.live;
 ---
 
 <section id="top" class="relative overflow-hidden bg-alp-surface">
@@ -19,12 +18,12 @@ const anyLive = telegram.live || whatsapp.live;
         <span>{site.programme}</span>
       </p>
       <h1 class="text-4xl font-extrabold leading-[1.05] tracking-tight text-alp-navy sm:text-5xl xl:text-6xl">
-        The ALP curriculum, delivered as a coach in the chat app you already use.
+        The complete ALP curriculum, in every learner's pocket.
       </h1>
       <p class="mt-6 max-w-2xl text-lg leading-relaxed text-alp-muted sm:text-xl">
-        ALP Coach turns the full Agribusiness Leadership Program into short lessons, quizzes and a coach
-        you can question by text or voice, on WhatsApp and Telegram. Every answer comes from validated ALP
-        content, and every interaction is visible to the programme team in one analytics dashboard.
+        ALP Coach delivers the Agribusiness Leadership Program on WhatsApp and Telegram: short lessons,
+        quizzes and a coach that answers by text or voice, from validated ALP content only. One bot per
+        channel, every ALP learner group covered, ready for any project.
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-3">
@@ -59,12 +58,9 @@ const anyLive = telegram.live || whatsapp.live;
       </div>
 
       <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-alp-muted">
-        <li class="flex items-center gap-2"><span class="text-alp-green">✓</span> Full ALP curriculum in English</li>
+        <li class="flex items-center gap-2"><span class="text-alp-green">✓</span> All nine ALP learning paths, in English</li>
         <li class="flex items-center gap-2"><span class="text-alp-green">✓</span> Text and voice, in both directions</li>
-        <li class="flex items-center gap-2">
-          <span class="text-alp-green">✓</span>
-          {anyLive ? "WhatsApp and Telegram" : "WhatsApp and Telegram, one bot per channel"}
-        </li>
+        <li class="flex items-center gap-2"><span class="text-alp-green">✓</span> New languages added on request</li>
       </ul>
     </div>
 
@@ -164,11 +160,22 @@ const anyLive = telegram.live || whatsapp.live;
         field.textContent = placeholder;
       };
 
+      // The first exchange (question + answer + its button) is shown immediately so
+      // the phone is never blank; the loop animates the rest, then replays everything.
+      const intro = steps.slice(0, 3);
+      let first = true;
       const play = async () => {
         for (;;) {
           steps.forEach((s) => s.classList.remove("is-in", "is-on"));
-          await sleep(500);
+          if (first) {
+            for (const el of intro) await reveal(el);
+            first = false;
+            await sleep(1600);
+          } else {
+            await sleep(500);
+          }
           for (const step of steps) {
+            if (intro.includes(step) && step.classList.contains("is-in")) continue;
             await waitVisible();
             const kind = step.dataset.step;
             if (kind === "typed") {

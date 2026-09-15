@@ -30,7 +30,7 @@ export const site = {
     },
   },
 
-  // Where programme teams should write to bring ALP Coach to a project.
+  // Where project teams should write to bring ALP Coach to a project.
   contactEmail: "aline@intaigent.com",
 
 
@@ -62,6 +62,7 @@ export const site = {
       channels: "Telegram",
       languages: "Swahili and English",
       audience: "Agribusiness retailers",
+      story: "Retailers follow the bookkeeping and retail management paths in Swahili, most of them by voice, and ask the coach about stock records, pricing and customer care.",
     },
     {
       country: "Bangladesh",
@@ -69,6 +70,7 @@ export const site = {
       channels: "WhatsApp and Telegram",
       languages: "Bengali and English",
       audience: "Coaches and agri-entrepreneurs in Rangpur, Rajshahi and Dhaka",
+      story: "Coaches use it alongside in-person training; entrepreneurs come back on their own to ask about bookkeeping, saving from the business and dealing with customer credit.",
     },
   ],
 };

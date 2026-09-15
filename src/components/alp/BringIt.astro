@@ -4,22 +4,22 @@ import { site } from "../../config/site";
 const steps = [
   {
     n: "1",
-    title: "Tell us about the programme",
-    body: "Country, language, and who the learners are: coaches, cooperative leaders, agri-enterprise managers or producer organisations.",
+    title: "Request access",
+    body: "Tell us the project, the country and who the learners are. The full ALP content for every learner group is already in the bot, so there is nothing to build.",
   },
   {
     n: "2",
-    title: "We configure, you approve",
-    body: "Registration, regions and language are set up on the existing platform. Translations are checked by a local reviewer you trust before anything goes live.",
+    title: "Share it with your learners",
+    body: "Learners join from a QR code or a link and register in a minute. English is available now; if your language is not there yet, request it and ALP adds it to the pipeline.",
   },
   {
     n: "3",
-    title: "Launch and watch it work",
-    body: "Learners join from a QR code or a link. The programme team gets the analytics dashboard from day one.",
+    title: "Follow progress in the dashboard",
+    body: "Your project team gets the analytics dashboard from day one: who is learning, how far they get, and what they ask.",
   },
 ];
 
-const subject = encodeURIComponent("ALP Coach for our programme");
+const subject = encodeURIComponent("ALP Coach for our project");
 ---
 
 <section id="bring" class="reveal py-20 lg:py-28">
@@ -27,13 +27,13 @@ const subject = encodeURIComponent("ALP Coach for our programme");
     <div class="overflow-hidden rounded-[32px] bg-alp-navy text-white">
       <div class="grid gap-10 p-8 sm:p-12 lg:grid-cols-12 lg:items-center lg:p-16">
         <div class="lg:col-span-5">
-          <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-bright">For programmes</p>
+          <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-bright">For project teams</p>
           <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">
             Bring ALP Coach to your project
           </h2>
           <p class="mt-4 text-lg leading-relaxed text-white/75">
-            One bot per channel already serves every country. A new deployment is a configuration, not a build,
-            so a programme can go from first conversation to live learners in weeks.
+            One bot per channel carries the complete ALP content for every learner group. For a World Bank
+            task team, adding ALP Coach to a project means getting access, not commissioning a build.
           </p>
           <a
             href={`mailto:${site.contactEmail}?subject=${subject}`}

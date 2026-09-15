@@ -162,26 +162,30 @@ const { telegram, whatsapp } = site;
         field.textContent = placeholder;
       };
 
-      // The first exchange (question + answer + its button) is shown immediately so
-      // the phone is never blank; the loop animates the rest, then replays everything.
+      // The first exchange is shown immediately so the phone is never blank. On
+      // later cycles the new question is typed while the old chat is still on
+      // screen, and the chat clears only when it is sent.
       const intro = steps.slice(0, 3);
-      let first = true;
+      const clearChat = async () => {
+        body.classList.add("is-resetting");
+        await sleep(450);
+        steps.forEach((s) => s.classList.remove("is-in", "is-on"));
+        body.classList.remove("is-resetting");
+        await sleep(200);
+      };
       const play = async () => {
-        for (;;) {
-          steps.forEach((s) => s.classList.remove("is-in", "is-on"));
-          if (first) {
+        for (let cycle = 0; ; cycle++) {
+          if (cycle === 0) {
             for (const el of intro) await reveal(el);
-            first = false;
             await sleep(1600);
-          } else {
-            await sleep(500);
           }
           for (const step of steps) {
-            if (intro.includes(step) && step.classList.contains("is-in")) continue;
+            if (cycle === 0 && intro.includes(step)) continue;
             await waitVisible();
             const kind = step.dataset.step;
             if (kind === "typed") {
               await typeInto(step.dataset.text ?? step.textContent?.trim() ?? "");
+              if (cycle > 0) await clearChat();
               await reveal(step);
               await sleep(500);
             } else if (kind === "coach") {
@@ -198,12 +202,7 @@ const { telegram, whatsapp } = site;
               await sleep(1100);
             }
           }
-          await sleep(3200);
-          body.classList.add("is-resetting");
-          await sleep(450);
-          steps.forEach((s) => s.classList.remove("is-in", "is-on"));
-          body.classList.remove("is-resetting");
-          await sleep(300);
+          await sleep(3600);
         }
       };
       play();

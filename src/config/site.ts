@@ -43,16 +43,27 @@ export const site = {
     { name: "Amharic", status: "planned" },
   ] as const,
 
+  // Structure of the full ALP curriculum (learning path > category > courses),
+  // from the MCT Learning Paths library, including the Traceability category.
   learningPaths: [
-    { title: "Fundamentals of Cooperatives" },
-    { title: "Producer Organization Essentials" },
-    { title: "Fundamentals of Retail Management" },
-    { title: "Bookkeeping Essentials" },
-    { title: "Finance and Accounting" },
-    { title: "Growing Your Business" },
-    { title: "Internal Management" },
-    { title: "Business Sustainability" },
-    { title: "Fundamentals of ALP Coaching" },
+    { title: "Fundamentals of Cooperatives", categories: [
+      { name: "Understanding Cooperatives", courses: 3 }, { name: "Leadership", courses: 3 }, { name: "Member Relations", courses: 4 } ] },
+    { title: "Producer Organization Essentials", categories: [
+      { name: "Operations", courses: 4 }, { name: "Bookkeeping for Producer Organizations", courses: 6 }, { name: "Sustainability", courses: 6 } ] },
+    { title: "Fundamentals of Retail Management", categories: [
+      { name: "Business Relationships", courses: 4 }, { name: "Inventory Management", courses: 4 }, { name: "Cost Management", courses: 3 } ] },
+    { title: "Bookkeeping Essentials", categories: [
+      { name: "Bookkeeping and Your Business", courses: 3 }, { name: "Bookkeeping Ledgers", courses: 3 } ] },
+    { title: "Finance and Accounting", categories: [
+      { name: "Finance and Accounting Basics", courses: 6 }, { name: "Working with Credit", courses: 3 }, { name: "Financial Analysis and Planning", courses: 5 } ] },
+    { title: "Growing Your Business", categories: [
+      { name: "Planning for Your Business", courses: 5 }, { name: "Marketing", courses: 4 }, { name: "Managing Risk", courses: 3 } ] },
+    { title: "Internal Management", categories: [
+      { name: "Internal Organization", courses: 3 }, { name: "Staff Management", courses: 3 } ] },
+    { title: "Business Sustainability", categories: [
+      { name: "Sustainability", courses: 6 }, { name: "Traceability", courses: 3 }, { name: "Women's Inclusion", courses: 3 } ] },
+    { title: "Fundamentals of ALP Coaching", categories: [
+      { name: "Coaching Basics", courses: 2 }, { name: "Coaching Skills", courses: 3 }, { name: "Coaching for the ALP Context", courses: 3 } ] },
   ],
 
   deployments: [

@@ -1,8 +1,9 @@
 ---
 import { site } from "../../config/site";
 import PhoneMock from "./PhoneMock.astro";
-import Wave from "./Wave.astro";
+import Voice from "./Voice.astro";
 const { telegram, whatsapp } = site;
+const anyLive = telegram.live || whatsapp.live;
 ---
 
 <section id="top" class="relative overflow-hidden bg-alp-surface">
@@ -28,7 +29,7 @@ const { telegram, whatsapp } = site;
 
       <div class="mt-8 flex flex-wrap items-center gap-3">
         {
-          telegram.live && (
+          telegram.live ? (
             <a
               href={telegram.url}
               target="_blank"
@@ -40,13 +41,20 @@ const { telegram, whatsapp } = site;
               </svg>
               Open ALP Coach in Telegram
             </a>
+          ) : (
+            <a
+              href="#how-it-works"
+              class="inline-flex h-12 items-center rounded-full bg-alp-green px-6 text-base font-semibold text-white shadow-lg shadow-alp-green/20 transition hover:bg-alp-navy"
+            >
+              See how it works
+            </a>
           )
         }
         <a
-          href="#how-it-works"
+          href={telegram.live ? "#how-it-works" : "#try"}
           class="inline-flex h-12 items-center rounded-full border border-alp-navy/15 bg-white px-6 text-base font-semibold text-alp-navy transition hover:border-alp-navy/40"
         >
-          See how it works
+          {telegram.live ? "See how it works" : "Get access"}
         </a>
       </div>
 
@@ -55,7 +63,7 @@ const { telegram, whatsapp } = site;
         <li class="flex items-center gap-2"><span class="text-alp-green">✓</span> Text and voice, in both directions</li>
         <li class="flex items-center gap-2">
           <span class="text-alp-green">✓</span>
-          {whatsapp.live ? "WhatsApp and Telegram" : `Telegram today, WhatsApp ${whatsapp.launch}`}
+          {anyLive ? "WhatsApp and Telegram" : "WhatsApp and Telegram, one bot per channel"}
         </li>
       </ul>
     </div>
@@ -63,34 +71,40 @@ const { telegram, whatsapp } = site;
     <div class="lg:col-span-5">
       <div class="relative">
         <div aria-hidden="true" class="absolute inset-x-8 -inset-y-6 rounded-[60px] bg-gradient-to-b from-alp-bright/25 via-alp-sky/10 to-transparent blur-2xl"></div>
-        <div class="relative">
-          <div data-hero-phone>
-            <PhoneMock live>
-              <p class="pm-day">Today</p>
-              <div class="pm-bubble pm-user" data-step="typed" data-text="What is the ABC method?">What is the ABC method?</div>
-              <div class="pm-bubble pm-coach" data-step="coach">
-                <p>The ABC method is an inventory management technique that classifies products into three
-                categories, A, B and C, based on their value to the business. Category A includes essential
-                and high-value products that generate the most revenue and require close management.
-                Category B consists of important but less critical items, while Category C comprises
-                low-value products that contribute minimally to overall income.</p>
-                <p class="pm-meta">Ask another question, or type 0 for the main menu</p>
-              </div>
-              <div class="pm-bubble pm-coach" data-step="coach" data-quick="true">
-                <p>Want to know more about this topic? Check out this ALP learning video:</p>
-                <p><strong>Example of the ABC method of inventory management</strong></p>
-              </div>
-              <div class="pm-bubble pm-user pm-voice" data-step="user" aria-label="Voice message, 6 seconds">
-                <span class="pm-play" aria-hidden="true"></span>
-                <Wave />
-                <span class="pm-time">0:06</span>
-              </div>
-              <div class="pm-bubble pm-coach" data-step="coach">
-                Start with your A items. Count them every week, set a minimum stock level for each one,
-                and reorder as soon as you reach it. B items can be checked monthly and C items each quarter.
-              </div>
-            </PhoneMock>
-          </div>
+        <div class="relative" data-hero-phone>
+          <PhoneMock live>
+            <p class="pm-day">Today</p>
+            <div class="pm-bubble pm-user" data-step="typed" data-text="What is the ABC method?" data-time="5:20 PM">
+              What is the ABC method?
+            </div>
+            <div class="pm-bubble pm-coach" data-step="coach" data-time="5:20 PM">
+              <p>The ABC method is an inventory management technique that classifies products into three
+              categories, A, B and C, based on their value to the business. Category A includes essential
+              and high-value products that generate the most revenue and require close management.
+              Category B consists of important but less critical items, while Category C comprises
+              low-value products that contribute minimally to overall income.</p>
+            </div>
+            <div class="pm-keys" data-step="keys">
+              <span class="pm-key">Listen to the answer</span>
+            </div>
+            <div class="pm-bubble pm-coach" data-step="coach" data-quick="true" data-time="5:20 PM">
+              <p>Want to know more about this topic? Check out this ALP learning video:</p>
+              <p><strong>Example of the ABC method of inventory management</strong></p>
+            </div>
+            <div class="pm-keys" data-step="keys">
+              <span class="pm-key">Watch the video</span>
+            </div>
+            <div class="pm-bubble pm-user pm-voice-only" data-step="user" data-time="5:21 PM" aria-label="Voice message, 6 seconds">
+              <Voice time="0:06" bars={20} />
+            </div>
+            <div class="pm-bubble pm-coach" data-step="coach" data-time="5:21 PM">
+              <p>Start with your A items. Count them every week, set a minimum stock level for each one,
+              and reorder as soon as you reach it. B items can be checked monthly and C items each quarter.</p>
+            </div>
+            <div class="pm-keys" data-step="keys">
+              <span class="pm-key">Listen to the answer</span>
+            </div>
+          </PhoneMock>
         </div>
       </div>
     </div>
@@ -98,19 +112,18 @@ const { telegram, whatsapp } = site;
 </section>
 
 <script>
-  // Plays the hero conversation as a loop. Static (all bubbles shown) when the
+  // Plays the hero conversation as a loop. Static (everything shown) when the
   // visitor prefers reduced motion; paused while the phone is off screen.
   const root = document.querySelector<HTMLElement>("[data-hero-phone]");
   if (root) {
     const body = root.querySelector<HTMLElement>(".pm-body")!;
     const field = root.querySelector<HTMLElement>("[data-pm-field]")!;
-    const day = body.querySelector<HTMLElement>(".pm-day");
     const steps = Array.from(body.querySelectorAll<HTMLElement>("[data-step]"));
     const placeholder = field.dataset.placeholder ?? "";
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduced) {
-      steps.forEach((s) => s.classList.add("is-in"));
+      steps.forEach((s) => s.classList.add("is-on", "is-in"));
     } else {
       let visible = true;
       new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.2 }).observe(root);
@@ -134,7 +147,6 @@ const { telegram, whatsapp } = site;
         typing.remove();
       };
       const reveal = async (el: HTMLElement) => {
-        // Move the bubble to the end so the order matches the sequence.
         body.appendChild(el);
         el.classList.add("is-on");
         await sleep(30);
@@ -155,19 +167,22 @@ const { telegram, whatsapp } = site;
       const play = async () => {
         for (;;) {
           steps.forEach((s) => s.classList.remove("is-in", "is-on"));
-          if (day) day.classList.add("is-in");
-          await sleep(600);
+          await sleep(500);
           for (const step of steps) {
             await waitVisible();
             const kind = step.dataset.step;
             if (kind === "typed") {
-              await typeInto(step.dataset.text ?? step.textContent ?? "");
+              await typeInto(step.dataset.text ?? step.textContent?.trim() ?? "");
               await reveal(step);
               await sleep(500);
             } else if (kind === "coach") {
               await showTyping(step.dataset.quick ? 700 : 1400);
               await reveal(step);
-              await sleep(step.dataset.quick ? 900 : 1500);
+              await sleep(step.dataset.quick ? 600 : 1200);
+            } else if (kind === "keys") {
+              await sleep(120);
+              await reveal(step);
+              await sleep(900);
             } else {
               await sleep(500);
               await reveal(step);

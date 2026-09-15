@@ -8,8 +8,10 @@ export const site = {
     "ALP Coach brings the full Agribusiness Leadership Program curriculum to WhatsApp and Telegram: short lessons, quizzes and a coach you can ask by text or voice.",
 
   // Production Telegram bot for the full ALP Coach (see Notion › Development › Telegram Bot Info).
+  // Set live: true when the bot is cleared for public access; until then the site
+  // shows a placeholder card with no link or QR.
   telegram: {
-    live: true,
+    live: false,
     handle: "alp_coach_bot",
     url: "https://t.me/alp_coach_bot",
     qr: "/images/alp/qr-telegram.png",

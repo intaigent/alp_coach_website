@@ -1,0 +1,17 @@
+---
+// Telegram-style voice player row: blue play button, waveform, duration.
+const heights = [3, 6, 9, 5, 12, 8, 4, 10, 7, 13, 6, 9, 4, 11, 8, 5, 12, 7, 3, 9, 6, 4, 8, 11, 5, 9, 4, 7];
+interface Props {
+  time: string;
+  bars?: number;
+}
+const { time, bars = 22 } = Astro.props;
+---
+
+<span class="pm-voice" aria-hidden="true">
+  <span class="pm-play"></span>
+  <span class="pm-wave">
+    {heights.slice(0, bars).map((h) => <i style={`--h: ${h}px`}></i>)}
+  </span>
+  <span class="pm-time">{time}</span>
+</span>

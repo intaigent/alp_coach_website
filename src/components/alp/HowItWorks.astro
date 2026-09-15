@@ -1,6 +1,6 @@
 ---
 import PhoneMock from "./PhoneMock.astro";
-import Wave from "./Wave.astro";
+import Voice from "./Voice.astro";
 
 // Minimal stroke icons (24x24 viewBox paths).
 const facts = [
@@ -25,6 +25,10 @@ const facts = [
     body: "The coach answers at 6 am before market day and at 10 pm after the books are closed.",
   },
 ];
+
+const cardClass =
+  "flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10";
+const mockClass = "mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6";
 ---
 
 <section id="how-it-works" class="reveal py-20 lg:py-28">
@@ -41,70 +45,78 @@ const facts = [
 
     <div class="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-4">
       <!-- Learn -->
-      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
-        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+      <article class={cardClass}>
+        <div class={mockClass}>
           <PhoneMock compact label="Lesson preview">
-            <div class="pm-bubble pm-coach" style="--i: 1">
-              <p>Cash flow and budgets. Please choose from:</p>
-              <p>1. Cash flow budget<br />2. Cash reserves<br />3. Learning path menu</p>
+            <div class="pm-bubble pm-coach" style="--i: 1" data-time="5:15 PM">
+              <Voice time="0:22" bars={18} />
+              <p>Main Menu. Please choose from:</p>
+              <p>1. Fundamentals of Cooperatives<br />2. Producer Organization Essentials<br />3. Fundamentals of Retail Management<br />4. Bookkeeping Essentials</p>
             </div>
-            <div class="pm-bubble pm-user" style="--i: 2">1</div>
-            <div class="pm-bubble pm-coach" style="--i: 3">
-              Does my business need a cash budget? Consider an agro retail shop that recently bought a new
-              pickup for deliveries but now can't cover the rent due to poor cash management.
+            <div class="pm-keys" style="--i: 2">
+              <span class="pm-key"><i></i>Fundamentals of Cooperatives</span>
+              <span class="pm-key"><i></i>Producer Organization Essentials</span>
+              <span class="pm-key"><i></i>Fundamentals of Retail Management</span>
+              <span class="pm-key"><i></i>Bookkeeping Essentials</span>
             </div>
-            <div class="pm-bubble pm-coach pm-voice" style="--i: 4" aria-label="Lesson audio, 12 seconds">
-              <span class="pm-play" aria-hidden="true"></span>
-              <Wave bars={16} />
-              <span class="pm-time">0:12</span>
+            <div class="pm-bubble pm-coach" style="--i: 3" data-time="5:16 PM">
+              <Voice time="0:09" bars={18} />
+              <p>The next topic is customer care. The first step in customer care is identifying the type of customer.</p>
+            </div>
+            <div class="pm-keys" style="--i: 4">
+              <span class="pm-key">Continue</span>
             </div>
           </PhoneMock>
         </div>
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Learn</p>
         <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">Short lessons you can read or listen to</h3>
         <p class="mt-2 text-sm leading-relaxed text-alp-muted">
-          Each ALP course is delivered as a sequence of short messages with an audio version of every lesson.
-          Learners move at their own pace, and the coach remembers where they stopped.
+          Learners pick a learning path, a category and a course from the menu. Each lesson arrives as a
+          short message with its audio version, and Continue moves to the next one.
         </p>
       </article>
 
       <!-- Check -->
-      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
-        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+      <article class={cardClass}>
+        <div class={mockClass}>
           <PhoneMock compact label="Quiz preview">
-            <div class="pm-bubble pm-coach" style="--i: 1">
-              <p>Cash budgets are important, because:</p>
-              <p>A) They provide valuable information for management decisions.<br />
-              B) They help identify discrepancies between actual and expected performance.<br />
-              C) Both of the above.</p>
+            <div class="pm-bubble pm-coach" style="--i: 1" data-time="5:19 PM">
+              <p>Are you ready to test your knowledge with a quick quiz?</p>
             </div>
-            <div class="pm-bubble pm-user" style="--i: 2">B</div>
-            <div class="pm-bubble pm-coach" style="--i: 3">
-              <p>Nice try! But not quite correct. The correct answer is C.</p>
-              <p>Cash budgets are important for both reasons. They provide valuable information for
-              management decisions and help owners identify discrepancies between actual and expected
-              performance.</p>
+            <div class="pm-keys" style="--i: 2">
+              <span class="pm-key">Yes, I'm Ready!</span>
             </div>
-            <div class="pm-bubble pm-coach" style="--i: 4">
-              <p>Congratulations, you have completed 40% of the Cash flow and budgets category.</p>
-              <p>1. Go to next course<br />2. Cash flow and budgets</p>
+            <div class="pm-bubble pm-coach" style="--i: 3" data-time="5:20 PM">
+              <p>Which of the following is a Convenience Factor?</p>
+              <p>A: Well-trained staff<br />B: Payment Terms<br />C: Product Quality<br />D: All of the above</p>
+            </div>
+            <div class="pm-keys pm-keys--2" style="--i: 4">
+              <span class="pm-key">A</span>
+              <span class="pm-key">B</span>
+              <span class="pm-key">C</span>
+              <span class="pm-key">D</span>
+            </div>
+            <div class="pm-bubble pm-coach" style="--i: 5" data-time="5:20 PM">
+              <p>Congratulations! You've answered that question correctly.</p>
             </div>
           </PhoneMock>
         </div>
         <p class="text-xs font-bold uppercase tracking-[0.18em] text-alp-green">Check</p>
-        <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">A quiz after every lesson</h3>
+        <h3 class="mt-2 text-lg font-bold leading-snug text-alp-navy">A quiz after every course</h3>
         <p class="mt-2 text-sm leading-relaxed text-alp-muted">
-          Quick questions confirm understanding before moving on. Wrong answers get an explanation, right
-          answers unlock the next course, and progress is shown as the learner goes.
+          Multiple-choice questions confirm understanding. Learners tap an answer, get an explanation
+          either way, and see their progress before moving to the next course.
         </p>
       </article>
 
       <!-- Ask -->
-      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
-        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+      <article class={cardClass}>
+        <div class={mockClass}>
           <PhoneMock compact label="Question preview">
-            <div class="pm-bubble pm-user" style="--i: 1">My customer says my price is too high. What should I do?</div>
-            <div class="pm-bubble pm-coach" style="--i: 2">
+            <div class="pm-bubble pm-user" style="--i: 1" data-time="5:43 PM">
+              My customer always complains my price is too high. What should I do?
+            </div>
+            <div class="pm-bubble pm-coach" style="--i: 2" data-time="5:43 PM">
               <p>To address your customer's concern about your price being too high, you can consider the
               following strategies:</p>
               <p>1. Adjust your price: evaluate if you can slightly lower your price while still covering
@@ -113,7 +125,9 @@ const facts = [
               that justify the current price.</p>
               <p>3. Offer promotions or discounts: limited-time offers attract customers without
               permanently lowering your prices.</p>
-              <p class="pm-meta">Ask another question, or type 0 for the main menu</p>
+            </div>
+            <div class="pm-keys" style="--i: 3">
+              <span class="pm-key">Listen to the answer</span>
             </div>
           </PhoneMock>
         </div>
@@ -126,23 +140,23 @@ const facts = [
       </article>
 
       <!-- Speak -->
-      <article class="flex flex-col rounded-3xl border border-alp-border bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-alp-navy/10">
-        <div class="mb-6 h-[360px] overflow-hidden rounded-2xl bg-alp-surface px-4 pt-6">
+      <article class={cardClass}>
+        <div class={mockClass}>
           <PhoneMock compact label="Voice preview">
-            <div class="pm-bubble pm-user pm-voice" style="--i: 1" aria-label="Voice message, 4 seconds">
-              <span class="pm-play" aria-hidden="true"></span>
-              <Wave bars={14} />
-              <span class="pm-time">0:04</span>
+            <div class="pm-bubble pm-user pm-voice-only" style="--i: 1" data-time="5:45 PM" aria-label="Voice message, 4 seconds">
+              <Voice time="0:04" bars={16} />
             </div>
-            <div class="pm-bubble pm-coach" style="--i: 2">
-              Record every item that comes in and goes out on the same day, in one book or sheet. Count
+            <div class="pm-bubble pm-coach" style="--i: 2" data-time="5:45 PM">
+              <p class="pm-muted">You asked: how do I keep my stock records?</p>
+              <p>Record every item that comes in and goes out on the same day, in one book or sheet. Count
               your stock at the end of each week and compare it with the book, so you notice any difference
-              early.
+              early.</p>
             </div>
-            <div class="pm-bubble pm-coach pm-voice" style="--i: 3" aria-label="Spoken answer, 18 seconds">
-              <span class="pm-play" aria-hidden="true"></span>
-              <Wave bars={16} />
-              <span class="pm-time">0:18</span>
+            <div class="pm-keys" style="--i: 3">
+              <span class="pm-key">Listen to the answer</span>
+            </div>
+            <div class="pm-bubble pm-coach pm-voice-only" style="--i: 4" data-time="5:45 PM" aria-label="Spoken answer, 18 seconds">
+              <Voice time="0:18" bars={18} />
             </div>
           </PhoneMock>
         </div>

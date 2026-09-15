@@ -40,6 +40,17 @@ import { site } from "../../config/site";
               </div>
             </dl>
             <p class="mt-6 border-t border-alp-border pt-5 text-sm leading-relaxed text-alp-muted">{d.story}</p>
+            {"feature" in d && d.feature && (
+              <div class="mt-5 rounded-2xl bg-alp-surface p-5">
+                <p class="text-sm leading-relaxed text-alp-navy">{d.feature.text}</p>
+                <p class="mt-2 text-xs text-alp-muted">
+                  {d.feature.source}.
+                  <a href={d.feature.url} target="_blank" rel="noopener" class="ml-1 font-semibold text-alp-green hover:text-alp-navy">
+                    {d.feature.label} <span aria-hidden="true">↗</span>
+                  </a>
+                </p>
+              </div>
+            )}
           </article>
         ))
       }

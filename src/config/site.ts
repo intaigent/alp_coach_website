@@ -63,6 +63,12 @@ export const site = {
       languages: "Swahili and English",
       audience: "Agribusiness retailers",
       story: "Retailers follow the bookkeeping and retail management paths in Swahili, most of them by voice, and ask the coach about stock records, pricing and customer care.",
+      feature: {
+        text: "Cliford Magoti, an agri-entrepreneur in Kasuguti, uses the coach \u201cas a virtual agri-coach on demand in Swahili and English.\u201d",
+        source: "Featured in an IFC story, October 2025",
+        url: "https://www.ifc.org/en/stories/2025/empowering-tanzania-s-farmers-one-entrepreneur-at-a-time",
+        label: "Read the story",
+      },
     },
     {
       country: "Bangladesh",

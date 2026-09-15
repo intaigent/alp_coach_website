@@ -57,15 +57,13 @@ export const site = {
     {
       country: "Tanzania",
       since: "2024",
-      programme: "Better Life Farming programme with Bayer",
       channels: "Telegram",
       languages: "Swahili and English",
-      audience: "Agro-dealers and farm advisors",
+      audience: "Agribusiness retailers",
     },
     {
       country: "Bangladesh",
       since: "2026",
-      programme: "Better Life Farming programme",
       channels: "WhatsApp and Telegram",
       languages: "Bengali and English",
       audience: "Coaches and agri-entrepreneurs in Rangpur, Rajshahi and Dhaka",

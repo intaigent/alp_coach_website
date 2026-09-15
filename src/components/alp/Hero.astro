@@ -1,5 +1,6 @@
 ---
 import { site } from "../../config/site";
+import PhoneMock from "./PhoneMock.astro";
 const { telegram, whatsapp } = site;
 ---
 
@@ -59,33 +60,10 @@ const { telegram, whatsapp } = site;
     </div>
 
     <div class="lg:col-span-5">
-      <div class="relative mx-auto w-[260px] sm:w-[280px]">
-        <div aria-hidden="true" class="absolute -inset-6 rounded-[48px] bg-gradient-to-br from-alp-bright/30 via-alp-sky/20 to-transparent blur-2xl"></div>
-        <div class="relative rounded-[36px] bg-alp-navy p-2 shadow-2xl shadow-alp-navy/30">
-          <div class="relative aspect-[9/17] overflow-hidden rounded-[30px] bg-black">
-            <!-- Chat header drawn over the recording so the demo reads as ALP Coach. -->
-            <div class="absolute inset-x-0 top-0 z-10 h-[14%] bg-alp-navy">
-              <div class="absolute left-1/2 top-2 h-4 w-20 -translate-x-1/2 rounded-full bg-black"></div>
-              <div class="absolute inset-x-0 bottom-0 flex h-[55%] items-center justify-between px-4">
-                <span class="text-[10px] text-white/60">Back</span>
-                <div class="text-center leading-tight">
-                  <p class="text-[12px] font-semibold text-white">ALP Coach</p>
-                  <p class="text-[9px] text-white/60">bot</p>
-                </div>
-                <img src="/images/alp/brand/alp-logo-primary.png" alt="" class="h-4 w-auto rounded-sm bg-white px-0.5" />
-              </div>
-            </div>
-            <video
-              src={site.demoVideo}
-              class="h-full w-full object-cover object-bottom"
-              autoplay
-              loop
-              muted
-              playsinline
-              preload="metadata"
-              aria-label="ALP Coach demo"
-            ></video>
-          </div>
+      <div class="relative">
+        <div aria-hidden="true" class="absolute inset-x-8 -inset-y-6 rounded-[60px] bg-gradient-to-b from-alp-bright/25 via-alp-sky/10 to-transparent blur-2xl"></div>
+        <div class="relative">
+          <PhoneMock />
         </div>
       </div>
     </div>

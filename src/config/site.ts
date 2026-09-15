@@ -31,8 +31,6 @@ export const site = {
   // Where programme teams should write to bring ALP Coach to a project.
   contactEmail: "aline@intaigent.com",
 
-  // Public demo video shown in the hero (already in /public).
-  demoVideo: "/Demo_ALP_logo_cut.mp4",
 
   languages: [
     { name: "English", status: "available" },

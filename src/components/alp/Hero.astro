@@ -2,7 +2,6 @@
 import { site } from "../../config/site";
 import PhoneMock from "./PhoneMock.astro";
 import Voice from "./Voice.astro";
-const { telegram, whatsapp } = site;
 ---
 
 <section id="top" class="relative overflow-hidden bg-alp-surface">
@@ -27,33 +26,17 @@ const { telegram, whatsapp } = site;
       </p>
 
       <div class="mt-8 flex flex-wrap items-center gap-3">
-        {
-          telegram.live ? (
-            <a
-              href={telegram.url}
-              target="_blank"
-              rel="noopener"
-              class="inline-flex h-12 items-center gap-2 rounded-full bg-alp-green px-6 text-base font-semibold text-white shadow-lg shadow-alp-green/20 transition hover:bg-alp-navy"
-            >
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16l-1.61 7.56c-.12.55-.45.68-.9.42l-2.5-1.84-1.2 1.16c-.13.13-.25.25-.5.25l.18-2.5 4.6-4.16c.2-.18-.04-.28-.3-.1L8.7 13.14l-2.48-.78c-.54-.17-.55-.54.11-.8l9.68-3.72c.45-.17.84.1.7.82z" />
-              </svg>
-              Open ALP Coach in Telegram
-            </a>
-          ) : (
-            <a
-              href="#how-it-works"
-              class="inline-flex h-12 items-center rounded-full bg-alp-green px-6 text-base font-semibold text-white shadow-lg shadow-alp-green/20 transition hover:bg-alp-navy"
-            >
-              See how it works
-            </a>
-          )
-        }
         <a
-          href={telegram.live ? "#how-it-works" : "#try"}
+          href="#try"
+          class="inline-flex h-12 items-center rounded-full bg-alp-green px-6 text-base font-semibold text-white shadow-lg shadow-alp-green/20 transition hover:bg-alp-navy"
+        >
+          Try ALP Coach
+        </a>
+        <a
+          href="#how-it-works"
           class="inline-flex h-12 items-center rounded-full border border-alp-navy/15 bg-white px-6 text-base font-semibold text-alp-navy transition hover:border-alp-navy/40"
         >
-          {telegram.live ? "See how it works" : "Get access"}
+          See how it works
         </a>
       </div>
 

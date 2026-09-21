@@ -1,6 +1,4 @@
 ---
-import { site } from "../config/site";
-
 const links = [
   { to: "#how-it-works", label: "How it works" },
   { to: "#curriculum", label: "Curriculum" },
@@ -10,7 +8,6 @@ const links = [
   { to: "#bring", label: "For projects" },
 ];
 
-const tryHref = site.telegram.live ? site.telegram.url : "#try";
 ---
 
 <header class="sticky top-0 z-50 border-b border-alp-border/70 bg-white/85 backdrop-blur-md">
@@ -42,9 +39,7 @@ const tryHref = site.telegram.live ? site.telegram.url : "#try";
 
     <div class="flex items-center gap-2">
       <a
-        href={tryHref}
-        target={site.telegram.live ? "_blank" : undefined}
-        rel={site.telegram.live ? "noopener" : undefined}
+        href="#try"
         class="inline-flex h-10 items-center whitespace-nowrap rounded-full bg-alp-green px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-alp-navy sm:px-5"
       >
         <span class="sm:hidden">Try it</span>

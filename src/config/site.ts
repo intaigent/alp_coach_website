@@ -8,23 +8,21 @@ export const site = {
     "ALP Coach brings the full Agribusiness Leadership Program curriculum to WhatsApp and Telegram: short lessons, quizzes and a coach you can ask by text or voice.",
 
   // Production Telegram bot for the full ALP Coach (see Notion › Development › Telegram Bot Info).
-  // Set live: true when the bot is cleared for public access; until then the site
-  // shows a placeholder card with no link or QR.
+  // live: false turns the card back into a placeholder with no link or QR.
   telegram: {
-    live: false,
+    live: true,
     handle: "alp_coach_bot",
     url: "https://t.me/alp_coach_bot",
     qr: "/images/alp/qr-telegram.png",
   },
 
-  // Full-bot production WhatsApp number is prepared but not to be distributed yet.
-  // When it is cleared for use, set live: true and fill number / displayNumber / qr.
+  // Full-bot production WhatsApp number. live: false turns the card back into a placeholder.
   whatsapp: {
-    live: false,
+    live: true,
     launch: "October 2026",
-    number: "", // e.g. "14154260877"
-    displayNumber: "", // e.g. "+1 415 426 0877"
-    qr: "", // e.g. "/images/alp/qr-whatsapp.png"
+    number: "14154260877",
+    displayNumber: "+1 415 426 0877",
+    qr: "/images/alp/qr-whatsapp.png",
     get url() {
       return this.number ? `https://wa.me/${this.number}` : "";
     },

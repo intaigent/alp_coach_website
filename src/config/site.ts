@@ -24,7 +24,9 @@ export const site = {
     displayNumber: "+1 415 426 0877",
     qr: "/images/alp/qr-whatsapp.png",
     get url() {
-      return this.number ? `https://wa.me/${this.number}` : "";
+      // "Start" is pre-filled so a first-time learner only has to press send; the bot
+      // answers it with the greeting and language choice, and logs bot_started.
+      return this.number ? `https://wa.me/${this.number}?text=Start` : "";
     },
   },
 

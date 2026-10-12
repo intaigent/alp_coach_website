@@ -9,6 +9,7 @@ interface Props {
 }
 
 const { title = site.name, description = site.description } = Astro.props;
+const gaId = site.ga4MeasurementId;
 ---
 
 <!DOCTYPE html>
@@ -33,6 +34,31 @@ const { title = site.name, description = site.description } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    {
+      gaId && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <script is:inline define:vars={{ gaId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", gaId);
+            // Click events on the buttons that matter: open_bot (channel = Telegram / WhatsApp)
+            // and contact_email. Elements opt in with a data-track attribute.
+            document.addEventListener("click", function (e) {
+              var el = e.target && e.target.closest ? e.target.closest("[data-track]") : null;
+              if (!el) return;
+              gtag("event", el.getAttribute("data-track"), {
+                channel: el.getAttribute("data-channel") || undefined,
+                link_url: el.getAttribute("href") || undefined,
+              });
+            });
+          </script>
+        </>
+      )
+    }
   </head>
   <body class="bg-white text-alp-navy antialiased">
     <AppHeader />

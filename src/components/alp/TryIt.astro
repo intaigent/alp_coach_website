@@ -83,6 +83,8 @@ const anyLive = channels.some((c) => c.live);
                   href={c.url}
                   target="_blank"
                   rel="noopener"
+                  data-track="open_bot"
+                  data-channel={c.name}
                   class="mt-6 inline-flex h-12 items-center rounded-full bg-alp-green px-6 text-base font-semibold text-white transition hover:bg-alp-navy"
                 >
                   {c.cta}

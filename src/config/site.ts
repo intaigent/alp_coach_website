@@ -33,6 +33,12 @@ export const site = {
   // Where project teams should write to bring ALP Coach to a project.
   contactEmail: "info@intaigent.com",
 
+  // Google Analytics 4 measurement ID for this site (its own web data stream in the
+  // intaigent GA account, not the intaigent.com one). Empty = no tracking script at all.
+  // Page views are automatic; the Telegram/WhatsApp buttons and the contact button send
+  // click events (see Layout.astro and data-track attributes).
+  ga4MeasurementId: "",
+
 
   languages: [
     { name: "English", status: "available" },

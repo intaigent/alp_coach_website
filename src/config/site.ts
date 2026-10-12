@@ -39,6 +39,11 @@ export const site = {
   // click events (see Layout.astro and data-track attributes).
   ga4MeasurementId: "",
 
+  // Vercel Web Analytics (enabled in the Vercel project > Analytics). Free plan: page views
+  // only, no click events. Served by Vercel at /_vercel/insights/script.js, so it does
+  // nothing on a local preview.
+  vercelAnalytics: true,
+
 
   languages: [
     { name: "English", status: "available" },

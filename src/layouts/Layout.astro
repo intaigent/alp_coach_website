@@ -10,6 +10,7 @@ interface Props {
 
 const { title = site.name, description = site.description } = Astro.props;
 const gaId = site.ga4MeasurementId;
+const vercelAnalytics = site.vercelAnalytics;
 ---
 
 <!DOCTYPE html>
@@ -34,6 +35,7 @@ const gaId = site.ga4MeasurementId;
       href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    {vercelAnalytics && <script is:inline defer src="/_vercel/insights/script.js" />}
     {
       gaId && (
         <>
